@@ -3,7 +3,10 @@ Grand maitre
 Pion assistant
 Plateau ecole
 Pinceau
-Tuile de départ
+Tuile de départ:
+- 2 pinceau
+- 1 flèches
+- un paysage
 
 ----- Diplomes -----
 
