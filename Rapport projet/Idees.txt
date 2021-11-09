@@ -1,0 +1,52 @@
+Joueur
+Grand maitre
+Pion assistant
+Plateau ecole
+Pinceau
+Tuile de départ
+
+----- Diplomes -----
+
+Diplomes en général:
+- couleur
+- points en fin de partie
+- peut rapporter d'autres choses (pion assistant, jeton orage, pinceau)
+
+Condition diplome atelier:
+- nombre de flèches
+- nombre de pinceau
+- paysages identiques
+
+Condition diplome Tableau
+- x arbres
+- x batiments différents
+- x personnages différents
+- types d'animaux
+
+---------------------
+
+
+
+------ Cartes enseignement -----
+Carte enseignement 
+- partie Atelier 
+- Partie Tableau
+- Verso d'une certaine couleur (Bleu, rouge, vert, jaune)
+
+
+Partie Tableau contient: 
+- Paysage (conditions pour la peindre)
+- Sujet de la Carte
+- Saison
+- points en fin de partie
+
+Partie Atelier peut contenir
+- un paysage
+- un matériel (+ un pinceau ou récupérer le pion assitant)
+- savoir-faire (+ 1 déplacement de pinceau par tour ou +1 conservement de carte enseigmenet d'un tour sur l'autre)
+--------------------------------
+
+Condition de fin de partie
+- la pioche est vide: la partie se termine à la fin du tour
+ou
+- a la fin d'un tour, au moins joueur possèdent 11 cartes dans leut tableau
