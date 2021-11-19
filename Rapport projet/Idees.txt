@@ -13,7 +13,7 @@ Tuile de départ:
 Diplomes en général:
 - couleur
 - points en fin de partie
-- peut rapporter d'autres choses (pion assistant, jeton orage, pinceau)
+- peut rapporter d'autres choses (pion assistant, jeton orage, pinceau) 
 
 Condition diplome atelier:
 - nombre de flèches
@@ -21,10 +21,10 @@ Condition diplome atelier:
 - paysages identiques
 
 Condition diplome Tableau
-- x arbres
-- x batiments différents
-- x personnages différents
-- types d'animaux
+- x arbres => Crédits pour les matières scientifiques
+- x batiments différents => Crédits pour les langues
+- x personnages différents => Crédits pour les T2S
+- types d'animaux => Crédits de sport
 
 ---------------------
 
@@ -32,24 +32,24 @@ Condition diplome Tableau
 
 ------ Cartes enseignement -----
 Carte enseignement 
-- partie Atelier 
-- Partie Tableau
+- partie Atelier => Compétences obtenus
+- Partie Tableau => UV Complétés 
 - Verso d'une certaine couleur (Bleu, rouge, vert, jaune)
 
 
-Partie Tableau contient: 
-- Paysage (conditions pour la peindre)
-- Sujet de la Carte
-- Saison
+Partie Tableau (UV) contient: 
+- Paysage (conditions pour la peindre) => Compétences nécessaire pour valider l'UV
+- Sujet de la Carte => Type d'UV
+- Saison (quel semestre)
 - points en fin de partie
 
-Partie Atelier peut contenir
-- un paysage
-- un matériel (+ un pinceau ou récupérer le pion assitant)
-- savoir-faire (+ 1 déplacement de pinceau par tour ou +1 conservement de carte enseigmenet d'un tour sur l'autre)
+Partie Atelier (compétences) peut contenir
+- un paysage => Une compétence
+- un matériel (+ un pinceau ou récupérer le pion assitant) => (+un cryon ou récupération du pion du second de major)
+- savoir-faire (+ 1 déplacement de pinceau par tour ou +1 conservement de carte enseigmenet d'un tour sur l'autre) => (+ 1 déplacement de crayon par tour ou +1 conservement de carte enseigmenet d'un tour sur l'autre)
 --------------------------------
 
 Condition de fin de partie
 - la pioche est vide: la partie se termine à la fin du tour
 ou
-- a la fin d'un tour, au moins joueur possèdent 11 cartes dans leut tableau
+- a la fin d'un tour, au moins joueur possèdent 11 cartes dans leur tableau (=> partie UV)

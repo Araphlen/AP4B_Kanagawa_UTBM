@@ -1,0 +1,55 @@
+Joueur
+Grand maitre => Major de promo
+Pion assistant => second de promo
+Plateau ecole
+Pinceau => Crayon
+Tuile de départ:
+- 2 pinceau => 2 Crayons
+- 1 flèche
+- un paysage => Rien
+
+----- Diplomes -----
+
+Diplomes en général:
+- couleur => Spécialisation diplome
+- points en fin de partie
+- peut rapporter d'autres choses (pion assistant, jeton orage, pinceau) => (second de promo, jeton orage, crayon) => (second de promo, jeton orage, crayon) => (pion second de promo, jeton semestre, crayon)
+
+Condition diplome atelier:
+- nombre de flèches
+- nombre de pinceau => Crayon
+- paysages identiques => Crédits de la même catégories
+
+Condition diplome Tableau
+- x arbres
+- x batiments différents
+- x personnages différents
+- types d'animaux
+
+---------------------
+
+
+
+------ Cartes enseignement -----
+Carte enseignement 
+- partie Atelier 
+- Partie Tableau
+- Verso d'une certaine couleur (Bleu, rouge, vert, jaune)
+
+
+Partie Tableau contient: 
+- Paysage (conditions pour la peindre)
+- Sujet de la Carte
+- Saison
+- points en fin de partie
+
+Partie Atelier peut contenir
+- un paysage
+- un matériel (+ un pinceau ou récupérer le pion assitant)
+- savoir-faire (+ 1 déplacement de pinceau par tour ou +1 conservement de carte enseigmenet d'un tour sur l'autre)
+--------------------------------
+
+Condition de fin de partie
+- la pioche est vide: la partie se termine à la fin du tour
+ou
+- a la fin d'un tour, au moins joueur possèdent 11 cartes dans leur tableau
