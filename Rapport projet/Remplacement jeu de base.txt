@@ -1,4 +1,4 @@
-Joueur
+Model.Joueur
 Grand maitre => Major de promo
 Pion assistant => second de promo
 Plateau ecole
@@ -31,7 +31,7 @@ Condition diplome Tableau
 
 
 ------ Cartes enseignement -----
-Carte enseignement 
+Model.Carte enseignement
 - partie Atelier 
 - Partie Tableau
 - Verso d'une certaine couleur (Bleu, rouge, vert, jaune)
@@ -39,7 +39,7 @@ Carte enseignement
 
 Partie Tableau contient: 
 - Paysage (conditions pour la peindre)
-- Sujet de la Carte
+- Sujet de la Model.Carte
 - Saison
 - points en fin de partie
 

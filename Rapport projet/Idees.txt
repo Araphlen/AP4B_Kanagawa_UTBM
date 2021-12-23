@@ -1,4 +1,4 @@
-Joueur
+Model.Joueur
 Grand maitre
 Pion assistant
 Plateau ecole
@@ -31,7 +31,7 @@ Condition diplome Tableau
 
 
 ------ Cartes enseignement -----
-Carte enseignement 
+Model.Carte enseignement
 - partie Atelier => Compétences obtenus
 - Partie Tableau => UV Complétés 
 - Verso d'une certaine couleur (Bleu, rouge, vert, jaune)
@@ -39,7 +39,7 @@ Carte enseignement
 
 Partie Tableau (UV) contient: 
 - Paysage (conditions pour la peindre) => Compétences nécessaire pour valider l'UV
-- Sujet de la Carte => Type d'UV
+- Sujet de la Model.Carte => Type d'UV
 - Saison (quel semestre)
 - points en fin de partie
 
