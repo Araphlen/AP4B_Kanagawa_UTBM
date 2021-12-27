@@ -12,11 +12,11 @@ public class Fenetre extends javax.swing.JFrame{
         this.setLayout(layout);
         PanneauSup panneauSup = new PanneauSup();
         panneauSup.lancement();
+        add(panneauSup);
+
         PanneauInf panneauInf = new PanneauInf();
         panneauInf.lancement();
-
-        add(panneauSup);
-        this.add(panneauInf);
+        add(panneauInf);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1920,1080);

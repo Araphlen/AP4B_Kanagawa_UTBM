@@ -1,4 +1,4 @@
 package Vue;
 
-public class JPanel {
+public class JPanel extends javax.swing.JPanel{
 }

@@ -1,4 +1,4 @@
 package Listeners;
 
-public interface ActionListener {
+public interface ActionListener extends java.awt.event.ActionListener {
 }

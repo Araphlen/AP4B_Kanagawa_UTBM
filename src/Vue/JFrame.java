@@ -1,4 +1,4 @@
 package Vue;
 
-public class JFrame {
+public class JFrame extends javax.swing.JFrame{
 }
