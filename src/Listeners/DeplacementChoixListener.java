@@ -1,4 +1,4 @@
 package Listeners;
 
-public class DeplacementChoixListener {
+public class DeplacementChoixListener implements ActionListener{
 }

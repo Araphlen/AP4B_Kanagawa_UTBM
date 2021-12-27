@@ -1,4 +1,4 @@
 package Listeners;
 
-public class FinDeplacementChoixListener {
+public class FinDeplacementChoixListener implements ActionListener{
 }

@@ -1,4 +1,4 @@
 package Listeners;
 
-public class FinNouveauxChoixListener {
+public class FinNouveauxChoixListener implements ActionListener{
 }

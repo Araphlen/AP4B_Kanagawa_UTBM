@@ -1,4 +1,4 @@
 package Listeners;
 
-public class NouveauChoixListener {
+public class NouveauChoixListener implements ActionListener{
 }

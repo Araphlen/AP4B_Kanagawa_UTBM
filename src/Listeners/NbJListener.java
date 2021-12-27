@@ -1,4 +1,4 @@
 package Listeners;
 
-public class NbJListener {
+public class NbJListener implements ActionListener {
 }
