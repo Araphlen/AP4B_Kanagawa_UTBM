@@ -17,6 +17,3 @@ Model:
 Vue:
 	$(JC) src/Vue/*.java
 
-
-
-
