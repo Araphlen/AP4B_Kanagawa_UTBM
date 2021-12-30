@@ -1,6 +1,11 @@
 package Model;
 
-public class Parcours {
-    private CarteUV listeUvs;
+import java.util.ArrayList;
 
+public class Parcours {
+    private ArrayList<CarteUV> listeUvs;
+
+    public ArrayList<CarteUV> getListeUvs() {
+        return listeUvs;
+    }
 }
