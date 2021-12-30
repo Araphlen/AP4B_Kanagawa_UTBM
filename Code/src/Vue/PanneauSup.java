@@ -3,21 +3,22 @@ package Vue;
 import javax.swing.*;
 import java.awt.*;
 
+// Panneau du haut de la fenetre
 public class PanneauSup extends javax.swing.JPanel{
-    public PanneauSup(){
-        lancement();
-    }
+    // Fenetre principal du jeu 
+    private Fenetre fenetre;
 
     /**
-     * Set up of the upper panel of the menu
+     * Constructeur de la classe
+     * 
+     * @param f
+     *  Fenetre du jeu
      */
-    public void lancement(){
-        PanneauMenuTitre panneauMenuTitre = new PanneauMenuTitre();
+    public PanneauSup(Fenetre f){
+        fenetre = f;
         setLayout(new BorderLayout());
-
-        JLabel titre = new JLabel("KanagUT");
-        add(titre,BorderLayout.NORTH);
-        JLabel nbJ = new JLabel("Choix du nombre de joueurs");
-        add(nbJ,BorderLayout.CENTER);
+        PanneauMenuTitre panneauMenuTitre = new PanneauMenuTitre();
+        add(panneauMenuTitre);
+        setBackground(Color.GREEN);
     }
 }

@@ -3,11 +3,13 @@ package Model;
 import Vue.Fenetre;
 
 public class Start implements java.lang.Runnable{
-    public static void start() {
-        KanagUT kanagUT = new KanagUT();
+    private KanagUT kanagUT;
+
+    public Start() {
+        kanagUT = new KanagUT();
     }
     public void run(){
-        new Fenetre();
+        new Fenetre(kanagUT);
 
     }
 }
