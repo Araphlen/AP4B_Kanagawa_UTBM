@@ -19,6 +19,5 @@ public class PanneauSup extends javax.swing.JPanel{
         setLayout(new BorderLayout());
         PanneauMenuTitre panneauMenuTitre = new PanneauMenuTitre();
         add(panneauMenuTitre);
-        setBackground(Color.GREEN);
     }
 }

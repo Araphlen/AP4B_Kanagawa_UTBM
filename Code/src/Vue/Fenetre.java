@@ -7,11 +7,19 @@ import Model.KanagUT;
 import java.awt.*;
 
 public class Fenetre extends javax.swing.JFrame{
-
+    // Panneau du haut de l'application
     private PanneauSup panneauSup;
+    // Panneau du bas de l'application
     private PanneauInf panneauInf;
+    // Accès au modèle de l'application
     private KanagUT kanagUT;
 
+    /**
+     * Constructeur de la classe
+     * 
+     * @param kanagUT
+     *   Objet permettant d'utiliser le modèle de l'application
+     */
     public Fenetre(KanagUT kanagUT) {
         //call the constructor of the JFrame swing class
         super("KanagUT");
@@ -29,7 +37,16 @@ public class Fenetre extends javax.swing.JFrame{
         setVisible(true);
     }
 
+    /**
+     * 
+     * @return KanagUT
+     *  Classe permettant d'accéder au modèle de l'application
+     */
     public KanagUT getKanagUT() {
         return kanagUT;
+    }
+
+    public void afficherPlateau() {
+        System.out.println("Afficher plateau !");
     }
 }
