@@ -6,13 +6,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+// Panneau du bas de la fenetre
 public class PanneauInf extends javax.swing.JPanel{
-    public PanneauInf() {
-        lancement();
-    }
+    // Fenetre principal du jeu
+    private Fenetre fenetre;
 
-    public void lancement() {
-        PanneauMenuNbJ panneauMenuNbJ = new PanneauMenuNbJ();
+    /** 
+    * Constructeur de la classe
+    * @param f
+    *   Fenetre du jeu
+    */
+    public PanneauInf(Fenetre f) {
+        fenetre = f;
+        setLayout(new BorderLayout());
+        PanneauMenuNbJ panneauMenuNbJ = new PanneauMenuNbJ(f);
         add(panneauMenuNbJ);
     }
 }

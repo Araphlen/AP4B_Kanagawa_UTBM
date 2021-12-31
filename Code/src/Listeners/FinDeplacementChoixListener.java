@@ -1,6 +1,6 @@
 package Listeners;
 
-import java.awt.event.ActionEvent;
+import java.awt.event.*;
 
 public class FinDeplacementChoixListener implements ActionListener{
     @Override
