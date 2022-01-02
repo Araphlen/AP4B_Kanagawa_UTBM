@@ -3,7 +3,7 @@ package Vue;
 import javax.swing.*;
 import java.awt.*;
 
-// Panneau affichant le tire du menu
+// Panneau affichant le titre du menu
 public class PanneauMenuTitre extends javax.swing.JPanel{
     // Constructeur de la classe
     public PanneauMenuTitre() {

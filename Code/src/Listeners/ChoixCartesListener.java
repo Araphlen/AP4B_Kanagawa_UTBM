@@ -2,7 +2,7 @@ package Listeners;
 
 import java.awt.event.*;
 
-public class ChoixClassListener implements ActionListener{
+public class ChoixCartesListener implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
 
