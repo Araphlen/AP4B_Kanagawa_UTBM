@@ -22,6 +22,11 @@ public class UVComponent extends JComponent {
         carte = c;
     }
 
+    /**
+     * Paint la carte
+     * 
+     * @param pinceau
+     */
     @Override
     protected void paintComponent(Graphics pinceau) {
         Graphics secondPinceau = pinceau.create();
@@ -40,5 +45,7 @@ public class UVComponent extends JComponent {
         secondPinceau.fillRect(0, 0, this.getWidth(), this.getHeight());
         secondPinceau.setColor(Color.WHITE);
         secondPinceau.drawString("Nombre de crédits: "+carte.getNbCredit(), (int) (this.getWidth() * 0.1), (int) (this.getHeight() * 0.2));
+
+        secondPinceau.drawRect(0, 0, this.getWidth(), this.getHeight());
     }
 }

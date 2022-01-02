@@ -9,17 +9,14 @@ import java.util.ArrayList;
 
 // Panneau affichant le parcours du joueur
 public class PanneauParcours extends javax.swing.JPanel {
-    // Fenetre de l'application
-    private Fenetre fenetre;
 
     /**
      * Constructeur de la classe
      * 
-     * @param f
+     * @param fenetre
      *  Fenetre du jeu
      */
-    public PanneauParcours(Fenetre f) {
-        fenetre = f;
+    public PanneauParcours(Fenetre fenetre) {
         setLayout(new BorderLayout());
 
         // Text indiquant des informations sur le joueur

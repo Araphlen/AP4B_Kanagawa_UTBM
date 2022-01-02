@@ -21,9 +21,10 @@ public class PanneauSup extends javax.swing.JPanel{
         add(panneauMenuTitre);
     }
 
+    // Affiche la plateforme d'inscription
     public void afficherChoixAction() {
         removeAll();
-        add(new PanneauChoixAction(fenetre));
+        add(new PanneauPlateformeInscription(fenetre));
         repaint();
         revalidate();
     }

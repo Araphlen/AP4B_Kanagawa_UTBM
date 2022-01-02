@@ -20,7 +20,10 @@ public class CompetenceComponent extends JComponent {
     public CompetenceComponent(CarteComp c) {
         carte = c;
     }
-
+    /**
+     * Paint la carte
+     * @param pinceau
+     */
     @Override
     protected void paintComponent(Graphics pinceau) {
         Graphics secondPinceau = pinceau.create();
@@ -46,5 +49,6 @@ public class CompetenceComponent extends JComponent {
         if (carte.getplusChoix()) {
             secondPinceau.drawString("+1 choix", (int) (this.getWidth() * 0.1), (int) (this.getHeight() * 0.5));
         }
+        secondPinceau.drawRect(0, 0, this.getWidth(), this.getHeight());
     }
 }
