@@ -30,4 +30,12 @@ public class PanneauInf extends javax.swing.JPanel{
         repaint();
         revalidate();
     }
+
+    // Affiche le score des perdants
+    public void afficherScorePerdants() {
+        removeAll();
+        add(new PanneauScoresPerdants(fenetre));
+        repaint();
+        revalidate();
+    }
 }

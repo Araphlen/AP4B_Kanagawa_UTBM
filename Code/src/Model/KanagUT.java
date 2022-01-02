@@ -206,4 +206,26 @@ public class KanagUT {
         // Todo
     }
 
+    /**
+     * 
+     * @return score du gagnant de la partie
+     */
+    public ScoreJoueur getGagnant() {
+        // Todo
+        return new ScoreJoueur(2, 500);
+    }
+
+    /**
+     * 
+     * @return score des perdants de la partie
+     */
+    public ArrayList<ScoreJoueur> getPerdants() {
+        // Todo
+        ArrayList<ScoreJoueur> perdants = new ArrayList<ScoreJoueur>();
+        perdants.add(new ScoreJoueur(1, 400));
+        perdants.add(new ScoreJoueur(3, 150));
+
+        return perdants;
+    }
+
 }
