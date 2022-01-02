@@ -28,4 +28,12 @@ public class PanneauSup extends javax.swing.JPanel{
         repaint();
         revalidate();
     }
+
+    // Affiche le score du gagnat
+    public void afficherScoreGagnant() {
+        removeAll();
+        add(new PanneauScoreGagnant(fenetre));
+        repaint();
+        revalidate();
+    }
 }

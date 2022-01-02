@@ -20,6 +20,7 @@ public class CompetenceComponent extends JComponent {
     public CompetenceComponent(CarteComp c) {
         carte = c;
     }
+    
     /**
      * Paint la carte
      * @param pinceau
