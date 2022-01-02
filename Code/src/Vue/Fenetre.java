@@ -47,6 +47,7 @@ public class Fenetre extends javax.swing.JFrame{
     }
 
     public void afficherPlateau() {
-        System.out.println("Afficher plateau !");
+        panneauSup.afficherChoixAction();
+        panneauInf.afficherParcours();
     }
 }

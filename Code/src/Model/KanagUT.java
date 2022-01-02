@@ -46,8 +46,18 @@ public class KanagUT {
      *  //TODO renomé en acquis Joueurs pour de la cohérence avec CartesParcours
      * @return les cartes competences du joueur actuel
      */
-    public ArrayList<CarteComp> getCartesCompJoueur(){
-        return joueurCourant.getCartesComp();
+    // public ArrayList<CarteComp> getCartesCompJoueur(){
+    //     return joueurCourant.getCartesComp();
+    // }
+
+    // Fonction utilisé uniquement pour des tests
+    public ArrayList<CarteComp> getCartesCompJoueur() {
+        ArrayList<CarteComp> comp = new ArrayList<CarteComp>();
+        comp.add(new CarteComp(e_filiere.VIRTUEL, 6, true));
+        comp.add(new CarteComp(e_filiere.EMBARQUE, 5, false));
+        comp.add(new CarteComp(e_filiere.LOGICIEL, 4, true));
+        comp.add(new CarteComp(e_filiere.DATASCIENCE, 3, false));
+        return comp;
     }
 
     public ArrayList<CarteUV> getCartesUvRestantes(){
@@ -64,8 +74,18 @@ public class KanagUT {
     }
 
 
-    public ArrayList<CarteUV> getCartesParcours(){
-        return joueurCourant.getCartesUv();
+    // public ArrayList<CarteUV> getCartesParcours(){
+    //     return joueurCourant.getCartesUv();
+    // }
+    
+    // Fonction utilisé uniquement pour des tests
+    public ArrayList<CarteUV> getCartesParcours() {
+        ArrayList<CarteUV> comp = new ArrayList<CarteUV>();
+        comp.add(new CarteUV(e_filiere.DATASCIENCE, 3));
+        comp.add(new CarteUV(e_filiere.LOGICIEL, 4));
+        comp.add(new CarteUV(e_filiere.EMBARQUE, 5));
+        comp.add(new CarteUV(e_filiere.VIRTUEL, 6));
+        return comp;
     }
 
 

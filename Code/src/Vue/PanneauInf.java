@@ -22,4 +22,12 @@ public class PanneauInf extends javax.swing.JPanel{
         PanneauMenuNbJ panneauMenuNbJ = new PanneauMenuNbJ(f);
         add(panneauMenuNbJ);
     }
+
+    // Cette fonction permet d'afficher le parcours du joueur courant
+    public void afficherParcours() {
+        removeAll();
+        add(new PanneauParcours(fenetre));
+        repaint();
+        revalidate();
+    }
 }

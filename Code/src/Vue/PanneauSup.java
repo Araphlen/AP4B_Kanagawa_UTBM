@@ -20,4 +20,11 @@ public class PanneauSup extends javax.swing.JPanel{
         PanneauMenuTitre panneauMenuTitre = new PanneauMenuTitre();
         add(panneauMenuTitre);
     }
+
+    public void afficherChoixAction() {
+        removeAll();
+        add(new PanneauChoixAction(fenetre));
+        repaint();
+        revalidate();
+    }
 }

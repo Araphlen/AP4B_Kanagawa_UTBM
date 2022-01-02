@@ -1,0 +1,81 @@
+package Vue;
+
+import javax.swing.*;
+
+import Model.*;
+
+import java.awt.*;
+import java.util.ArrayList;
+
+// Panneau affichant le parcours du joueur
+public class PanneauParcours extends javax.swing.JPanel {
+    // Fenetre de l'application
+    private Fenetre fenetre;
+
+    /**
+     * Constructeur de la classe
+     * 
+     * @param f
+     *  Fenetre du jeu
+     */
+    public PanneauParcours(Fenetre f) {
+        fenetre = f;
+        setLayout(new BorderLayout());
+
+        // Text indiquant des informations sur le joueur
+        String text = "Crédits: ";
+        // Todo
+        text+="\nChoix de compétences: ";
+        //Todo
+        text+="\nNombre de déplacements: ";
+        // Todo
+        text+="\nDiplômes: ";
+        // Todo
+
+        // Ajout du text à la fenetre
+        JTextArea textArea = new JTextArea(text);
+        textArea.setBackground(getBackground());
+        JPanel centrerTextArea = new JPanel(new GridBagLayout());
+        centrerTextArea.add(textArea);
+        add(centrerTextArea, BorderLayout.EAST);
+
+        // Le code suivant permet de créer l'aspect visuel des cartes du parcours du joueur
+        KanagUT kanagUT = fenetre.getKanagUT();
+        ArrayList<CarteUV> uv = kanagUT.getCartesParcours();
+        ArrayList<CarteComp> comp = kanagUT.getCartesCompJoueur();
+        // On détermine la taille du tableau dédié au visuels des cartes
+        int sizeCartesJoueur = 8, uvSize = uv.size(), compSize = comp.size();
+
+        if(sizeCartesJoueur < uvSize) {
+            sizeCartesJoueur = uvSize;
+        }
+        if(sizeCartesJoueur < compSize) {
+            sizeCartesJoueur = compSize;
+        }
+
+        JPanel cartesJoueur = new JPanel(new GridLayout(2, sizeCartesJoueur));
+        int compteur = 0;
+        // Création des cartes UV
+        for (CarteUV carteUV : uv) {
+            ++compteur;
+            cartesJoueur.add(new UVComponent(carteUV));
+        }
+        // Si la partie des cartes UV n'est pas pleine, on comble l'espace avec des JPanel vide
+        for (int i = 1; i <= sizeCartesJoueur - compteur; ++i) {
+            cartesJoueur.add(new JPanel());
+        }
+
+        compteur = 0;
+        // Création des cartes compétences
+        for (CarteComp carteComp : comp) {
+            ++compteur;
+            cartesJoueur.add(new CompetenceComponent(carteComp));
+        }
+        // Si la partie des cartes compétences n'est pas pleine, on comble l'espace avec des JPanel vide
+        for (int i = 1; i <= sizeCartesJoueur - compteur; ++i) {
+            cartesJoueur.add(new JPanel());
+        }
+
+        add(cartesJoueur);
+    }
+}
