@@ -36,4 +36,12 @@ public class PanneauSup extends javax.swing.JPanel{
         repaint();
         revalidate();
     }
+    
+    // Affiche la vue de la sélection de la destination des cartes
+    public void afficherChoixCartes() {
+        removeAll();
+        add(new PanneauChoixCartes(fenetre));
+        repaint();
+        revalidate();
+    }
 }

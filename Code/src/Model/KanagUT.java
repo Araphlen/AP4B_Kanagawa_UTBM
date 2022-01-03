@@ -67,6 +67,19 @@ public class KanagUT {
         // Todo
     }
 
+    /**
+     * 
+     * @return Colonne de cartes sélectionné par le joueur courant
+     */
+    public ColonneCartesInscription getColonneCartesChoisi() {
+        // Todo
+        ArrayList<Carte> col1 = new ArrayList<Carte>();
+        col1.add(new Carte(new CarteComp(e_filiere.DATASCIENCE, 3, true), new CarteUV(e_filiere.DATASCIENCE, 3)));
+        col1.add(new Carte(new CarteComp(e_filiere.VIRTUEL, 6, false), new CarteUV(e_filiere.VIRTUEL, 6)));
+        col1.add(new Carte(new CarteComp(e_filiere.LOGICIEL, 4, true), new CarteUV(e_filiere.LOGICIEL, 4)));
+        return new ColonneCartesInscription(col1);
+    }
+
 
 
     /**
@@ -138,10 +151,12 @@ public class KanagUT {
 
     /**
      * TODO faudrait changer le nom pour addCartes... et dansles diagrammes aussi
-     * @param carteComps
+     * @param carteCompsChoisis Cartes compétences sélectionnés par le joueur
+     * @param carteUvChoisis Cartes UV sélectionnés par le joueur
      */
-    public void setCartesCompetencesChoisis(CarteComp[] carteComps){
-        joueurCourant.addCartesComp(carteComps);
+    public void addCartesCompetencesUVsChoisis(ArrayList<CarteComp> cartesCompChoisis, ArrayList<CarteUV> carteUvChoisis){
+        // Todo
+        // joueurCourant.addCartesComp(cartesCompChoisis);
     }
 
     /**

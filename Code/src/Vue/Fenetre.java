@@ -54,12 +54,17 @@ public class Fenetre extends javax.swing.JFrame{
 
     // Affiche la sélection de la destination des cartes choisis aucours de la plateforme d'inscription
     public void afficherChoixCartes() {
-        System.out.println("Choix cartes !");
+        panneauSup.afficherChoixCartes();
     }
 
     // Affichage du score des joueurs en fin de partie
     public void affichageScore() {
         panneauSup.afficherScoreGagnant();
         panneauInf.afficherScorePerdants();
+    }
+
+    public void afficherNouveauxChoixCompetences() {
+        // Todo
+        System.out.println("Nouveaux choix Competences");
     }
 }
