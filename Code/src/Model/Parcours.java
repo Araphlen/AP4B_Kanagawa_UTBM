@@ -8,4 +8,8 @@ public class Parcours {
     public ArrayList<CarteUV> getListeUvs() {
         return listeUvs;
     }
+
+    public void addUvs(ArrayList<CarteUV> carteUVS) {
+        listeUvs.addAll(carteUVS);
+    }
 }

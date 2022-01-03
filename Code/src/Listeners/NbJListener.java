@@ -3,7 +3,6 @@ package Listeners;
 
 import java.awt.event.ActionEvent;
 import Vue.Fenetre;
-import Model.KanagUT;
 
 // Listener permettant d'indiquer le nombre de joueurs de la partie
 public class NbJListener implements java.awt.event.ActionListener {
@@ -28,7 +27,7 @@ public class NbJListener implements java.awt.event.ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        fenetre.getKanagUT().setNbJoueurs(nbJ);
+        fenetre.getKanagUT().createNJoueurs(nbJ);
         fenetre.afficherPlateau();
     }
 }

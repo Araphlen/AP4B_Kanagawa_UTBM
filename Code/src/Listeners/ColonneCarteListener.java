@@ -4,7 +4,7 @@ import java.awt.event.*;
 
 import Vue.Fenetre;
 
-// Listener permettant d'indiquer quelle colonne de cartes a été sélectionnée à la plateforme d'inscription
+// Listener permettant d'indiquer quelle colonne de cartes a été sélectionnée par le joueur courant à la plateforme d'inscription
 public class ColonneCarteListener implements ActionListener {
     // Fenetre de l'application
     private Fenetre fenetre;

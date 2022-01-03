@@ -21,6 +21,14 @@ public class CarteComp {
         return filiere;
     }
 
+    /**
+     * set l'état de sélection de la carte
+     * @param selected
+     */
+    public void setSelection(boolean selected) {
+        this.selected = selected;
+    }
+
     public int getNbComp() {
         return nbComp;
     }

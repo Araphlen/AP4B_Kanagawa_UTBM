@@ -3,19 +3,41 @@ package Model;
 import java.util.ArrayList;
 
 public class KanagUT {
-    private Joueur joueurCourant;
+    private Joueur joueurCourant; //TODO verifier la pertinence
+    private ArrayList<Joueur> joueurs;
     private int nbJoueurs;
     private PlateformeInscription plateformeInscription;
-    private int tour;
+    private int semestre;
 
     /**
      *
      */
     public KanagUT() {
-        this.tour = 0;
+        this.semestre = 0;
+        this.joueurs=new ArrayList<>();
+        plateformeInscription = new PlateformeInscription();
+
     }
 
     //#####     Getters         ####//
+
+    public int getNbJoueurs() {
+        return nbJoueurs;
+    }
+
+    public Joueur getJoueurCourant(){
+        //2 méthode
+        //1:
+        //return joueurCourant;
+        //2:
+        for (Joueur joueur :
+                this.joueurs) {
+            if (joueur.isCurrentPlayer()){
+                return joueur;
+            }
+        }
+        return null;
+    }
 
     /**
      *
@@ -110,7 +132,7 @@ public class KanagUT {
      * @return
      */
     public int getDeplacementsRestantsChoixJoueur() {
-        return joueurCourant.getGetNbDeplacementRestants();
+        return joueurCourant.getNbDeplacementRestants();
     }
 
 
@@ -140,7 +162,11 @@ public class KanagUT {
      *
      * @param nbJoueurs
      */
-    public void setNbJoueurs(int nbJoueurs) {
+    public void createNJoueurs(int nbJoueurs) {
+        for (int i = 0; i < nbJoueurs; i++) {
+            joueurs.add(new Joueur(i));
+        }
+        joueurs.get(0).setCurrentPlayer(true);
         this.nbJoueurs = nbJoueurs;
     }
 
@@ -151,12 +177,12 @@ public class KanagUT {
 
     /**
      * TODO faudrait changer le nom pour addCartes... et dansles diagrammes aussi
-     * @param carteCompsChoisis Cartes compétences sélectionnés par le joueur
+     * @param cartesCompChoisis Cartes compétences sélectionnés par le joueur
      * @param carteUvChoisis Cartes UV sélectionnés par le joueur
      */
     public void addCartesCompetencesUVsChoisis(ArrayList<CarteComp> cartesCompChoisis, ArrayList<CarteUV> carteUvChoisis){
-        // Todo
-        // joueurCourant.addCartesComp(cartesCompChoisis);
+        joueurCourant.addCartesComp(cartesCompChoisis);
+        joueurCourant.addCartesUvs(carteUvChoisis);
     }
 
     /**
@@ -164,10 +190,11 @@ public class KanagUT {
      */
     public void ajoutNouveauChoixSurCarteComp(CarteComp carteComp){
         //TODO
+
     }
 
     public void addCompToAcquis(CarteComp carteComp){
-        //TODO
+        getJoueurCourant().addCarteComp(carteComp);
     }
 
     public void addUvToParcours(CarteUV carteUV){
@@ -183,7 +210,8 @@ public class KanagUT {
      *
      */
     public void deplacementChoixCompetence(){
-        //TODO
+        //TODO mettre les parametres
+        getJoueurCourant().deplacerChoix();
     }
 
 
@@ -200,14 +228,12 @@ public class KanagUT {
 
     // Renvoie le numéro du joueur actuel
     public int getNumJoueur() {
-        // Todo
-        return 1;
+        return getJoueurCourant().getNumero();
     }
 
     // Renvoie le numéro du semestre en cours
     public int getNumSemestre() {
-        // Todo
-        return 1;
+        return semestre;
     }
 
     // Renvoie vrai si le joueur peut attendre durant son tour, sinon renvoie false
@@ -218,7 +244,7 @@ public class KanagUT {
 
     // Le joueur attend avant de quitter la plateforme d'inscription
     public void attendre() {
-        // Todo
+        getJoueurCourant().setWaiting(true);
     }
 
     /**

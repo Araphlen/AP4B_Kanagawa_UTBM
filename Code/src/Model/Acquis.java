@@ -3,25 +3,34 @@ package Model;
 import java.util.ArrayList;
 
 public class Acquis {
-    private ArrayList<Integer> PositionsChoix;
+    private ArrayList<Integer> positionsChoix;
     private ArrayList<CarteComp> listCompetences;
 
-    public ArrayList<Integer> getPositionsChoix() {
-        return PositionsChoix;
+    public Acquis() {
+        this.positionsChoix=new ArrayList<>();
+        this.listCompetences=new ArrayList<>();
     }
 
+    /**
+     *
+     * @return
+     */
+    public ArrayList<Integer> getPositionsChoix() {
+        return positionsChoix;
+    }
+
+    /**
+     *
+     * @return
+     */
     public ArrayList<CarteComp> getListCompetences() {
         return listCompetences;
     }
 
-    public void addComp(CarteComp[] carteComps) {
-        //FIX Pas tres lisible tous les carteComp et leurs variantes
-        for (CarteComp carteComp:carteComps) {
-            listCompetences.add(carteComp);
-        }
-    }
-
-
+    /**
+     *
+     * @return
+     */
     public ArrayList<CarteComp> getCarteCompActives() {
         ArrayList<CarteComp> competencesActives = new ArrayList<>();
         for (CarteComp carteComp :listCompetences) {
@@ -31,4 +40,32 @@ public class Acquis {
         }
         return competencesActives;
     }
+
+
+    public int getNbCartesSelected(){
+        int nbSelected =0;
+        for (CarteComp carteComp : listCompetences) {
+            if (carteComp.isSelected()){
+                nbSelected ++;
+            }
+        }
+        return nbSelected;
+    }
+
+    public void addComps(ArrayList<CarteComp> carteComps) {
+        listCompetences.addAll(carteComps);
+    }
+    //TODO FIX on peux peut etre n'en faire qu'une et toujours lui donné un ArrayList avec des fois un truc seul dedans
+    public void addComp(CarteComp carteComp) {
+        listCompetences.add(carteComp);
+    }
+
+
+
+
+    public void selectCarte(int nbCarteComp) {
+        listCompetences.get(nbCarteComp).setSelection(true);
+    }
+
+
 }
