@@ -7,25 +7,8 @@ public class CarteComp {
     private boolean selected;
     private boolean plusChoix;
 
-    public CarteComp(e_filiere filiere, int nbComp, boolean plusChoix) {
-        this.filiere = filiere;
-        this.nbComp = nbComp;
-        this.plusChoix = plusChoix;
-    }
 
     public boolean isSelected() {
         return selected;
-    }
-
-    public e_filiere getFiliere() {
-        return filiere;
-    }
-
-    public int getNbComp() {
-        return nbComp;
-    }
-
-    public boolean getplusChoix() {
-        return plusChoix;
     }
 }
