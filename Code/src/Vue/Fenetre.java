@@ -46,20 +46,7 @@ public class Fenetre extends javax.swing.JFrame{
         return kanagUT;
     }
 
-    // Affiche la plateforme d'inscription
     public void afficherPlateau() {
-        panneauSup.afficherChoixAction();
-        panneauInf.afficherParcours();
-    }
-
-    // Affiche la sélection de la destination des cartes choisis aucours de la plateforme d'inscription
-    public void afficherChoixCartes() {
-        System.out.println("Choix cartes !");
-    }
-
-    // Affichage du score des joueurs en fin de partie
-    public void affichageScore() {
-        panneauSup.afficherScoreGagnant();
-        panneauInf.afficherScorePerdants();
+        System.out.println("Afficher plateau !");
     }
 }
