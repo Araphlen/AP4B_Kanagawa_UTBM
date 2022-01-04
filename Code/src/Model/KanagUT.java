@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class KanagUT {
-    private ArrayList<Joueur> joueurs;
+    private final ArrayList<Joueur> joueurs;
     private int nbJoueurs;
     private PlateformeInscription plateformeInscription;
-    public ColonneCartesInscription colonneCartesCoisis;
+    private ColonneCartesInscription colonneCartesCoisis;
     private int semestre;
     private ArrayList<Carte> cartesJeu;
     private ArrayList<Specialisation> specialisations;
@@ -31,7 +31,19 @@ public class KanagUT {
     }
 
     /**
-     *
+     * rempli la plateform d'inscription avec un nombre de colonne correspondant au nombre de joueurs
+     */
+    public void setUpPlateform() {
+        ArrayList<ColonneCartesInscription> tempColonnes = new ArrayList<>();
+        for (int i = 0; i < nbJoueurs; i++) {
+            tempColonnes.add(new ColonneCartesInscription(cartesJeu.get(i)));
+            cartesJeu.remove(i);
+        }
+        plateformeInscription.addColonnes(tempColonnes);
+    }
+
+    /**
+     *  genere aléatoirement les cartes du jeu
      * @return
      */
     private ArrayList<Carte> generateAllCartes() {
@@ -51,6 +63,10 @@ public class KanagUT {
         return tempCartes;
     }
 
+    /**
+     *
+     * @return
+     */
     private ArrayList<CarteComp> generateCartesComp() {
         Random random = new Random();
         ArrayList<CarteComp> tempcarteCarteComps = new ArrayList<>();
@@ -63,6 +79,10 @@ public class KanagUT {
         return tempcarteCarteComps;
     }
 
+    /**
+     *
+     * @return
+     */
     private ArrayList<CarteUV> generateCartesUvs() {
         Random random = new Random();
         ArrayList<CarteUV> tempcarteUVS = new ArrayList<>();
@@ -77,7 +97,9 @@ public class KanagUT {
 
 
     public void ajouterCarteToColonne(){
+        for (int i = 0; i < plateformeInscription.getColonnes().size(); i++) {
 
+        }
     }
 
 
@@ -118,47 +140,54 @@ public class KanagUT {
      *
      * @return cartes sur la plateforme d'inscription
      */
-    // public ArrayList<ColonneCartesInscription> getCarteSurPlateforme(){
-    //     return plateformeInscription.getCartes();
-    // }
+     public ArrayList<ColonneCartesInscription> getCarteSurPlateforme(){
+         return plateformeInscription.getColonnes();
+     }
 
     // Fonction utilisé uniquement pour des tests
-    public ArrayList<ColonneCartesInscription> getCarteSurPlateforme() {
-        ArrayList<ColonneCartesInscription> colonnes = new ArrayList<ColonneCartesInscription>();
-        ArrayList<Carte> col1 = new ArrayList<Carte>();
-        ArrayList<Carte> col2 = new ArrayList<Carte>();
-        col1.add(new Carte(new CarteComp(e_filiere.DATASCIENCE, true, true,false), new CarteUV(1,e_filiere.DATASCIENCE, 2,0)));
-        col1.add(new Carte(new CarteComp(e_filiere.VIRTUEL, true, false,false), new CarteUV(1,e_filiere.VIRTUEL, 2,0)));
-        col1.add(new Carte(new CarteComp(e_filiere.LOGICIEL, true, true,false), new CarteUV(1,e_filiere.LOGICIEL, 2,0)));
-        col2.add(new Carte(new CarteComp(e_filiere.EMBARQUE, true, false,false), new CarteUV(1,e_filiere.EMBARQUE, 1,0)));
-        col2.add(new Carte(new CarteComp(e_filiere.LOGICIEL, true, true,false), new CarteUV(1,e_filiere.LOGICIEL, 1,0)));
-        col2.add(new Carte(new CarteComp(e_filiere.VIRTUEL, true, true,false), new CarteUV(1,e_filiere.VIRTUEL, 1,0)));
-        colonnes.add(new ColonneCartesInscription(col1));
-        colonnes.add(new ColonneCartesInscription(col2));
-
-        return colonnes;
-    }
+//    public ArrayList<ColonneCartesInscription> getCarteSurPlateforme() {
+//        ArrayList<ColonneCartesInscription> colonnes = new ArrayList<ColonneCartesInscription>();
+//        ArrayList<Carte> col1 = new ArrayList<Carte>();
+//        ArrayList<Carte> col2 = new ArrayList<Carte>();
+//        col1.add(new Carte(new CarteComp(e_filiere.DATASCIENCE, true, true,false), new CarteUV(1,e_filiere.DATASCIENCE, 2,0)));
+//        col1.add(new Carte(new CarteComp(e_filiere.VIRTUEL, true, false,false), new CarteUV(1,e_filiere.VIRTUEL, 2,0)));
+//        col1.add(new Carte(new CarteComp(e_filiere.LOGICIEL, true, true,false), new CarteUV(1,e_filiere.LOGICIEL, 2,0)));
+//        col2.add(new Carte(new CarteComp(e_filiere.EMBARQUE, true, false,false), new CarteUV(1,e_filiere.EMBARQUE, 1,0)));
+//        col2.add(new Carte(new CarteComp(e_filiere.LOGICIEL, true, true,false), new CarteUV(1,e_filiere.LOGICIEL, 1,0)));
+//        col2.add(new Carte(new CarteComp(e_filiere.VIRTUEL, true, true,false), new CarteUV(1,e_filiere.VIRTUEL, 1,0)));
+//        colonnes.add(new ColonneCartesInscription(col1));
+//        colonnes.add(new ColonneCartesInscription(col2));
+//
+//        return colonnes;
+//    }
 
     /**
      * Permet d'indiquer quelle colonne de carte a été choisi avant de quitter la plateforme d'inscription
      * @param numColonne
     */
     public void setColonneCartesChoisi(int numColonne) {
-
+        this.colonneCartesCoisis=plateformeInscription.getColonneI(numColonne);
     }
 
     /**
-     * 
-     * @return Colonne de cartes sélectionné par le joueur courant
+     *
+     * @return
      */
     public ColonneCartesInscription getColonneCartesChoisi() {
-        // Todo
-        ArrayList<Carte> col1 = new ArrayList<Carte>();
-        col1.add(new Carte(new CarteComp(e_filiere.DATASCIENCE, false, true,true), new CarteUV(1,e_filiere.DATASCIENCE, 2,0)));
-        col1.add(new Carte(new CarteComp(e_filiere.VIRTUEL, false, false,true), new CarteUV(1,e_filiere.VIRTUEL, 2,0)));
-        col1.add(new Carte(new CarteComp(e_filiere.LOGICIEL, false, true,true), new CarteUV(1,e_filiere.LOGICIEL, 1,0)));
-        return new ColonneCartesInscription(col1);
+        return colonneCartesCoisis;
     }
+
+//    /**
+//     *
+//     * @return Colonne de cartes sélectionné par le joueur courant
+//     */
+//    public ColonneCartesInscription getColonneCartesChoisi() {
+//        ArrayList<Carte> col1 = new ArrayList<Carte>();
+//        col1.add(new Carte(new CarteComp(e_filiere.DATASCIENCE, false, true,true), new CarteUV(1,e_filiere.DATASCIENCE, 2,0)));
+//        col1.add(new Carte(new CarteComp(e_filiere.VIRTUEL, false, false,true), new CarteUV(1,e_filiere.VIRTUEL, 2,0)));
+//        col1.add(new Carte(new CarteComp(e_filiere.LOGICIEL, false, true,true), new CarteUV(1,e_filiere.LOGICIEL, 1,0)));
+//        return new ColonneCartesInscription(col1);
+//    }
 
 
 
@@ -166,19 +195,19 @@ public class KanagUT {
      *  //TODO renomé en acquis Joueurs pour de la cohérence avec CartesParcours
      * @return les cartes competences du joueur actuel
      */
-    // public ArrayList<CarteComp> getCartesCompJoueur(){
-    //     return joueurCourant.getCartesComp();
-    // }
+     public ArrayList<CarteComp> getCartesCompJoueur(){
+         return getJoueurCourant().getCartesComp();
+     }
 
-    // Fonction utilisé uniquement pour des tests
-    public ArrayList<CarteComp> getCartesCompJoueur() {
-        ArrayList<CarteComp> comps = new ArrayList<CarteComp>();
-        comps.add(new CarteComp(e_filiere.VIRTUEL, true, true,true));
-        comps.add(new CarteComp(e_filiere.EMBARQUE, false, false,true));
-        comps.add(new CarteComp(e_filiere.LOGICIEL, false, true,true));
-        comps.add(new CarteComp(e_filiere.DATASCIENCE, false, false,true));
-        return comps;
-    }
+//    // Fonction utilisé uniquement pour des tests
+//    public ArrayList<CarteComp> getCartesCompJoueur() {
+//        ArrayList<CarteComp> comps = new ArrayList<CarteComp>();
+//        comps.add(new CarteComp(e_filiere.VIRTUEL, true, true,true));
+//        comps.add(new CarteComp(e_filiere.EMBARQUE, false, false,true));
+//        comps.add(new CarteComp(e_filiere.LOGICIEL, false, true,true));
+//        comps.add(new CarteComp(e_filiere.DATASCIENCE, false, false,true));
+//        return comps;
+//    }
 
     public ArrayList<CarteUV> getCartesUvRestantes(){
         //TODO
@@ -194,26 +223,33 @@ public class KanagUT {
     }
 
 
-    // public ArrayList<CarteUV> getCartesParcours(){
-    //     return joueurCourant.getCartesUv();
-    // }
+    /**
+     *
+     * @return
+     */
+     public ArrayList<CarteUV> getCartesParcours(){
+         return getJoueurCourant().getCartesUv();
+     }
     
-    // Fonction utilisé uniquement pour des tests
-    public ArrayList<CarteUV> getCartesParcours() {
-        ArrayList<CarteUV> comp = new ArrayList<CarteUV>();
-        comp.add(new CarteUV(1,e_filiere.DATASCIENCE, 3,0));
-        comp.add(new CarteUV(1,e_filiere.LOGICIEL, 4,0));
-        comp.add(new CarteUV(1,e_filiere.EMBARQUE, 5,0));
-        comp.add(new CarteUV(1,e_filiere.VIRTUEL, 6,0));
-        return comp;
-    }
+//    // Fonction utilisé uniquement pour des tests
+//    public ArrayList<CarteUV> getCartesParcours() {
+//        ArrayList<CarteUV> comp = new ArrayList<CarteUV>();
+//        comp.add(new CarteUV(1,e_filiere.DATASCIENCE, 3,0));
+//        comp.add(new CarteUV(1,e_filiere.LOGICIEL, 4,0));
+//        comp.add(new CarteUV(1,e_filiere.EMBARQUE, 5,0));
+//        comp.add(new CarteUV(1,e_filiere.VIRTUEL, 6,0));
+//        return comp;
+//    }
 
 
     //####      Setters         ####//
 
+    /**
+     *
+     * @param cartesCompJoueur
+     */
     public void setCartesCompJoueur(ArrayList<CarteComp> cartesCompJoueur){
-        //todo
-
+        //TODO
     }
 
     /**
@@ -247,21 +283,37 @@ public class KanagUT {
      *
      */
     public void ajoutNouveauChoixSurCarteComp(int index){
-        //TODO
+        getJoueurCourant().getCartesComp().get(index).setSelection(true);
     }
 
+    /**
+     *
+     * @param carteComp
+     */
     public void addCompToAcquis(CarteComp carteComp){
         getJoueurCourant().addCarteComp(carteComp);
     }
 
+    /**
+     *
+     * @param carteUV
+     */
     public void addUvToParcours(CarteUV carteUV){
         //TODO
     }
 
+    /**
+     *
+     * @param indexSpecialisation
+     */
     public void verifierPossibiliteeChoixSpe(int indexSpecialisation){
 
     }
 
+    /**
+     *
+     * @param indexSpecialisation
+     */
     public void choixSpecialisation(int indexSpecialisation ){
         getJoueurCourant().addSpe(specialisations.get(indexSpecialisation));
 
@@ -276,35 +328,61 @@ public class KanagUT {
         getJoueurCourant().deplacerChoix(numOldCarte,deplacement);
     }
 
-
+    /**
+     *
+     * @return
+     */
     public boolean checkFinSemestre(){
         //TODO
         return false;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean checkFinJeu(){
         //TODO
         return false;
     }
 
 
-    // Renvoie le numéro du joueur actuel
+    /**
+     *     Renvoie le numéro du joueur actuel
+      */
     public int getNumJoueur() {
         return getJoueurCourant().getNumero();
     }
 
-    // Renvoie le numéro du semestre en cours
+    /**
+     *     Renvoie le numéro du semestre en cours
+     */
     public int getNumSemestre() {
         return semestre;
     }
 
-    // Renvoie vrai si le joueur peut attendre durant son tour, sinon renvoie false
+    /**
+     * Renvoie vrai si le joueur peut attendre durant son tour, sinon renvoie false
+     * @return
+     */
     public boolean joueurPeutAttendre() {
-        // Todo
+        int nbJoueursWaiting=0;
+        for (Joueur joueur :
+                joueurs) {
+            if (joueur.isWaiting()){
+                nbJoueursWaiting++;
+            }
+        }
+        if (getJoueurCourant().isWaiting() && nbJoueursWaiting <2){
+            //TODO vérifier si je dois enlever l'attente du joueur ici
+            return false;
+        }
         return true;
     }
 
-    // Le joueur attend avant de quitter la plateforme d'inscription
+    /**
+     * Le joueur attend avant de quitter la plateforme d'inscription
+     */
     public void attendre() {
         getJoueurCourant().setWaiting(true);
     }
@@ -330,5 +408,6 @@ public class KanagUT {
 
         return perdants;
     }
+
 
 }

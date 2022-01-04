@@ -28,6 +28,7 @@ public class NbJListener implements java.awt.event.ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         fenetre.getKanagUT().createNJoueurs(nbJ);
+        fenetre.getKanagUT().setUpPlateform();
         fenetre.afficherPlateau();
     }
 }

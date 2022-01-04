@@ -41,7 +41,6 @@ public class Acquis {
         return competencesActives;
     }
 
-
     public int getNbCartesSelected(){
         int nbSelected =0;
         for (CarteComp carteComp : listCompetences) {
@@ -55,13 +54,11 @@ public class Acquis {
     public void addComps(ArrayList<CarteComp> carteComps) {
         listCompetences.addAll(carteComps);
     }
+
     //TODO FIX on peux peut etre n'en faire qu'une et toujours lui donné un ArrayList avec des fois un truc seul dedans
     public void addComp(CarteComp carteComp) {
         listCompetences.add(carteComp);
     }
-
-
-
 
     public void selectCarte(int nbCarteComp) {
         listCompetences.get(nbCarteComp).setSelection(true);

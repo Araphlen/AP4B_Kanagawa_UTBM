@@ -11,6 +11,17 @@ public class PlateformeInscription {
         this.colonnes=new ArrayList<>();
     }
 
+    public ArrayList<ColonneCartesInscription> getColonnes() {
+        return colonnes;
+    }
+
+    public ColonneCartesInscription getColonneI(int numColonne) {
+        ColonneCartesInscription tempColonne = colonnes.get(numColonne);
+        colonnes.remove(numColonne);
+        return tempColonne;
+    }
+
+
     public ArrayList<ColonneCartesInscription> getCartes() {
         return colonnes;
     }

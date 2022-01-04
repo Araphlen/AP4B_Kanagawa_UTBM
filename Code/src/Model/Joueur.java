@@ -6,7 +6,7 @@ public class Joueur {
     private int numero;
     private boolean currentPlayer;
     private boolean waiting;
-    private int nbDeplacement;
+    private int nbDeplacements;
     private int nbDeplacementRestants;
     //nombre de choix dont le joueur dispose encore à placer
     private int nbChoix;
@@ -71,17 +71,14 @@ public class Joueur {
         return parcour.getListeUvs();
     }
 
+    public void commencerDeplacements(){
+        nbDeplacementRestants = nbDeplacements;
+    }
+
     public void deplacerChoix(int numOldCarte, int deplacement){
-        //TODO trouver un moyen de modifier
-        /** param numCarteInitiale (valide car les cartes sont tj dans le meme ordre) et directionModif
-         * unselect carte n
-         * if deplacement = right
-         *     select carte n+1
-         * else
-         *      select carte n-1
-         */
-
-
+        this.acquis.getListCompetences().get(numOldCarte).setSelection(false);
+        this.acquis.getListCompetences().get(numOldCarte+deplacement).setSelection(true);
+        nbDeplacementRestants --;
     }
 
     public void selectCarte(int nbCarteComp){
