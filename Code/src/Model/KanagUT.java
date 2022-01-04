@@ -1,13 +1,16 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class KanagUT {
-    private Joueur joueurCourant; //TODO verifier la pertinence
     private ArrayList<Joueur> joueurs;
     private int nbJoueurs;
     private PlateformeInscription plateformeInscription;
+    public ColonneCartesInscription colonneCartesCoisis;
     private int semestre;
+    private ArrayList<Carte> cartesJeu;
+    private ArrayList<Specialisation> specialisations;
 
     /**
      *
@@ -16,8 +19,67 @@ public class KanagUT {
         this.semestre = 0;
         this.joueurs=new ArrayList<>();
         plateformeInscription = new PlateformeInscription();
+        specialisations = new ArrayList<>();
+        for (e_filiere filiere :
+                e_filiere.values()) {
+            for (int i = 1; i < 4; i++) {
+                specialisations.add(new Specialisation(i*2,filiere,i));
+            }
+        }
+        cartesJeu = generateAllCartes();
 
     }
+
+    /**
+     *
+     * @return
+     */
+    private ArrayList<Carte> generateAllCartes() {
+        Random rand = new Random();
+        ArrayList<Carte> tempCartes= new ArrayList<>();
+        ArrayList<CarteComp> tempCartesComp = generateCartesComp();
+        ArrayList<CarteUV> tempcartesUVS = generateCartesUvs();
+
+        for (int i = 12*4; i >0; i--) {
+            int indexcomp=rand.nextInt(i);
+            int indexUv=rand.nextInt(i);
+
+            tempCartes.add(new Carte(tempCartesComp.get(indexcomp),tempcartesUVS.get(indexUv)));
+            tempCartesComp.remove(indexcomp);
+            tempcartesUVS.remove(indexUv);
+        }
+        return tempCartes;
+    }
+
+    private ArrayList<CarteComp> generateCartesComp() {
+        Random random = new Random();
+        ArrayList<CarteComp> tempcarteCarteComps = new ArrayList<>();
+        for (e_filiere filiere :
+                e_filiere.values()) {
+            for (int i = 1; i <= 12; i++) {
+                tempcarteCarteComps.add(new CarteComp(filiere,random.nextBoolean(),random.nextBoolean(), random.nextBoolean()));
+            }
+        }
+        return tempcarteCarteComps;
+    }
+
+    private ArrayList<CarteUV> generateCartesUvs() {
+        Random random = new Random();
+        ArrayList<CarteUV> tempcarteUVS = new ArrayList<>();
+        for (e_filiere filiere :
+                e_filiere.values()) {
+            for (int i = 1; i <= 12; i++) {
+                tempcarteUVS.add(new CarteUV(random.nextInt(2), filiere, random.nextInt(2), random.nextInt(3)));
+            }
+        }
+        return tempcarteUVS;
+    }
+
+
+    public void ajouterCarteToColonne(){
+
+    }
+
 
     //#####     Getters         ####//
 
@@ -26,10 +88,6 @@ public class KanagUT {
     }
 
     public Joueur getJoueurCourant(){
-        //2 méthode
-        //1:
-        //return joueurCourant;
-        //2:
         for (Joueur joueur :
                 this.joueurs) {
             if (joueur.isCurrentPlayer()){
@@ -45,7 +103,7 @@ public class KanagUT {
      * @return
      */
     public ArrayList<CarteComp> getCartesCompetencesChoisis(ArrayList<Boolean> cartesChoisis){
-        return joueurCourant.getCartesCompActives();
+        return getJoueurCourant().getCartesCompActives();
     }
 
     /**
@@ -53,7 +111,7 @@ public class KanagUT {
      * @return
      */
     public int getNbNouveauxChoixJoueur(){
-        return joueurCourant.getNbChoixDispo();
+        return getJoueurCourant().getNbChoixDispo();
     }
 
     /**
@@ -69,12 +127,12 @@ public class KanagUT {
         ArrayList<ColonneCartesInscription> colonnes = new ArrayList<ColonneCartesInscription>();
         ArrayList<Carte> col1 = new ArrayList<Carte>();
         ArrayList<Carte> col2 = new ArrayList<Carte>();
-        col1.add(new Carte(new CarteComp(e_filiere.DATASCIENCE, 3, true), new CarteUV(e_filiere.DATASCIENCE, 3)));
-        col1.add(new Carte(new CarteComp(e_filiere.VIRTUEL, 6, false), new CarteUV(e_filiere.VIRTUEL, 6)));
-        col1.add(new Carte(new CarteComp(e_filiere.LOGICIEL, 4, true), new CarteUV(e_filiere.LOGICIEL, 4)));
-        col2.add(new Carte(new CarteComp(e_filiere.EMBARQUE, 4, false), new CarteUV(e_filiere.EMBARQUE, 4)));
-        col2.add(new Carte(new CarteComp(e_filiere.LOGICIEL, 5, true), new CarteUV(e_filiere.LOGICIEL, 5)));
-        col2.add(new Carte(new CarteComp(e_filiere.VIRTUEL, 6, true), new CarteUV(e_filiere.VIRTUEL, 6)));
+        col1.add(new Carte(new CarteComp(e_filiere.DATASCIENCE, true, true,false), new CarteUV(1,e_filiere.DATASCIENCE, 2,0)));
+        col1.add(new Carte(new CarteComp(e_filiere.VIRTUEL, true, false,false), new CarteUV(1,e_filiere.VIRTUEL, 2,0)));
+        col1.add(new Carte(new CarteComp(e_filiere.LOGICIEL, true, true,false), new CarteUV(1,e_filiere.LOGICIEL, 2,0)));
+        col2.add(new Carte(new CarteComp(e_filiere.EMBARQUE, true, false,false), new CarteUV(1,e_filiere.EMBARQUE, 1,0)));
+        col2.add(new Carte(new CarteComp(e_filiere.LOGICIEL, true, true,false), new CarteUV(1,e_filiere.LOGICIEL, 1,0)));
+        col2.add(new Carte(new CarteComp(e_filiere.VIRTUEL, true, true,false), new CarteUV(1,e_filiere.VIRTUEL, 1,0)));
         colonnes.add(new ColonneCartesInscription(col1));
         colonnes.add(new ColonneCartesInscription(col2));
 
@@ -86,7 +144,7 @@ public class KanagUT {
      * @param numColonne
     */
     public void setColonneCartesChoisi(int numColonne) {
-        // Todo
+
     }
 
     /**
@@ -96,9 +154,9 @@ public class KanagUT {
     public ColonneCartesInscription getColonneCartesChoisi() {
         // Todo
         ArrayList<Carte> col1 = new ArrayList<Carte>();
-        col1.add(new Carte(new CarteComp(e_filiere.DATASCIENCE, 3, true), new CarteUV(e_filiere.DATASCIENCE, 3)));
-        col1.add(new Carte(new CarteComp(e_filiere.VIRTUEL, 6, false), new CarteUV(e_filiere.VIRTUEL, 6)));
-        col1.add(new Carte(new CarteComp(e_filiere.LOGICIEL, 4, true), new CarteUV(e_filiere.LOGICIEL, 4)));
+        col1.add(new Carte(new CarteComp(e_filiere.DATASCIENCE, false, true,true), new CarteUV(1,e_filiere.DATASCIENCE, 2,0)));
+        col1.add(new Carte(new CarteComp(e_filiere.VIRTUEL, false, false,true), new CarteUV(1,e_filiere.VIRTUEL, 2,0)));
+        col1.add(new Carte(new CarteComp(e_filiere.LOGICIEL, false, true,true), new CarteUV(1,e_filiere.LOGICIEL, 1,0)));
         return new ColonneCartesInscription(col1);
     }
 
@@ -114,12 +172,12 @@ public class KanagUT {
 
     // Fonction utilisé uniquement pour des tests
     public ArrayList<CarteComp> getCartesCompJoueur() {
-        ArrayList<CarteComp> comp = new ArrayList<CarteComp>();
-        comp.add(new CarteComp(e_filiere.VIRTUEL, 6, true));
-        comp.add(new CarteComp(e_filiere.EMBARQUE, 5, false));
-        comp.add(new CarteComp(e_filiere.LOGICIEL, 4, true));
-        comp.add(new CarteComp(e_filiere.DATASCIENCE, 3, false));
-        return comp;
+        ArrayList<CarteComp> comps = new ArrayList<CarteComp>();
+        comps.add(new CarteComp(e_filiere.VIRTUEL, true, true,true));
+        comps.add(new CarteComp(e_filiere.EMBARQUE, false, false,true));
+        comps.add(new CarteComp(e_filiere.LOGICIEL, false, true,true));
+        comps.add(new CarteComp(e_filiere.DATASCIENCE, false, false,true));
+        return comps;
     }
 
     public ArrayList<CarteUV> getCartesUvRestantes(){
@@ -132,7 +190,7 @@ public class KanagUT {
      * @return
      */
     public int getDeplacementsRestantsChoixJoueur() {
-        return joueurCourant.getNbDeplacementRestants();
+        return getJoueurCourant().getNbDeplacementRestants();
     }
 
 
@@ -143,10 +201,10 @@ public class KanagUT {
     // Fonction utilisé uniquement pour des tests
     public ArrayList<CarteUV> getCartesParcours() {
         ArrayList<CarteUV> comp = new ArrayList<CarteUV>();
-        comp.add(new CarteUV(e_filiere.DATASCIENCE, 3));
-        comp.add(new CarteUV(e_filiere.LOGICIEL, 4));
-        comp.add(new CarteUV(e_filiere.EMBARQUE, 5));
-        comp.add(new CarteUV(e_filiere.VIRTUEL, 6));
+        comp.add(new CarteUV(1,e_filiere.DATASCIENCE, 3,0));
+        comp.add(new CarteUV(1,e_filiere.LOGICIEL, 4,0));
+        comp.add(new CarteUV(1,e_filiere.EMBARQUE, 5,0));
+        comp.add(new CarteUV(1,e_filiere.VIRTUEL, 6,0));
         return comp;
     }
 
@@ -181,16 +239,15 @@ public class KanagUT {
      * @param carteUvChoisis Cartes UV sélectionnés par le joueur
      */
     public void addCartesCompetencesUVsChoisis(ArrayList<CarteComp> cartesCompChoisis, ArrayList<CarteUV> carteUvChoisis){
-        joueurCourant.addCartesComp(cartesCompChoisis);
-        joueurCourant.addCartesUvs(carteUvChoisis);
+        getJoueurCourant().addCartesComp(cartesCompChoisis);
+        getJoueurCourant().addCartesUvs(carteUvChoisis);
     }
 
     /**
      *
      */
-    public void ajoutNouveauChoixSurCarteComp(CarteComp carteComp){
+    public void ajoutNouveauChoixSurCarteComp(int index){
         //TODO
-
     }
 
     public void addCompToAcquis(CarteComp carteComp){
@@ -201,17 +258,22 @@ public class KanagUT {
         //TODO
     }
 
-    public void addSpecialisation(Specialisation specialisation ){
-        joueurCourant.addSpe(specialisation);
+    public void verifierPossibiliteeChoixSpe(int indexSpecialisation){
+
+    }
+
+    public void choixSpecialisation(int indexSpecialisation ){
+        getJoueurCourant().addSpe(specialisations.get(indexSpecialisation));
+
     }
 
     //#### Fonctions        ####//
     /**
      *
      */
-    public void deplacementChoixCompetence(){
+    public void deplacementChoixCompetence(int numOldCarte, int deplacement ){
         //TODO mettre les parametres
-        getJoueurCourant().deplacerChoix();
+        getJoueurCourant().deplacerChoix(numOldCarte,deplacement);
     }
 
 

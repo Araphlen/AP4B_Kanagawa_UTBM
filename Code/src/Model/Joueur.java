@@ -71,7 +71,7 @@ public class Joueur {
         return parcour.getListeUvs();
     }
 
-    public void deplacerChoix(){
+    public void deplacerChoix(int numOldCarte, int deplacement){
         //TODO trouver un moyen de modifier
         /** param numCarteInitiale (valide car les cartes sont tj dans le meme ordre) et directionModif
          * unselect carte n
@@ -80,6 +80,8 @@ public class Joueur {
          * else
          *      select carte n-1
          */
+
+
     }
 
     public void selectCarte(int nbCarteComp){

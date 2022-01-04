@@ -2,21 +2,31 @@ package Model;
 
 public class CarteComp {
     private e_filiere filiere;
-    private int nbComp;
-    private int sensModifChoix;
+    //private int nbComp;
+    private boolean deplacementDroite;
+    private boolean deplacementGauche;
     private boolean selected;
     private boolean plusChoix;
 
-    public CarteComp(e_filiere filiere, int nbComp, boolean plusChoix) {
+    public CarteComp(e_filiere filiere, boolean deplacementDroite, boolean deplacementGauche, boolean plusChoix) {
         this.filiere = filiere;
-        this.nbComp = nbComp;
+        this.deplacementDroite = deplacementDroite;
+        this.deplacementGauche = deplacementGauche;
+        this.selected = false;
         this.plusChoix = plusChoix;
     }
 
+    /**
+     * @return
+     */
     public boolean isSelected() {
         return selected;
     }
 
+    /**
+     *
+     * @return
+     */
     public e_filiere getFiliere() {
         return filiere;
     }
@@ -29,9 +39,6 @@ public class CarteComp {
         this.selected = selected;
     }
 
-    public int getNbComp() {
-        return nbComp;
-    }
 
     public boolean getplusChoix() {
         return plusChoix;
