@@ -355,7 +355,7 @@ public class KanagUT {
      */
     public boolean verifierPossibiliteeChoixSpe(int indexSpecialisation){
         e_filiere filiere=specialisations.get(indexSpecialisation).getFiliere();
-        return specialisations.get(indexSpecialisation).getCreditNecessaire() < getJoueurCourant().getNbCreditFiliaire(filiere);
+        return specialisations.get(indexSpecialisation).getCreditNecessaire() < getJoueurCourant().getNbCreditFiliere(filiere);
     }
 
     /**

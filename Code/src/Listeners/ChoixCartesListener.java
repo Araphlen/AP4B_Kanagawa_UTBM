@@ -37,7 +37,7 @@ public class ChoixCartesListener implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         ArrayList<CarteComp> comp = new ArrayList<CarteComp>();
-        ArrayList<CarteUV> uv = new ArrayList<CarteUV>();
+        // TODO a enlever aussi ArrayList<CarteUV> uv = new ArrayList<CarteUV>();
         // destinations des cartes
         for(int i = 0; i<checkBoxs.size(); ++i) {
             if(checkBoxs.get(i).isSelected()) {
