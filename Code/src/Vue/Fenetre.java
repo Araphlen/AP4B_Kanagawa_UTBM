@@ -46,6 +46,22 @@ public class Fenetre extends javax.swing.JFrame{
         return kanagUT;
     }
 
+    /**
+     * 
+     * @return le panneau inférieur de la fenetre
+     */
+    public PanneauInf getPanneauInf() {
+        return panneauInf;
+    }
+
+    /**
+     * 
+     * @return le panneau supérieur de la fenetre
+     */
+    public PanneauSup getPanneauSup() {
+        return panneauSup;
+    }
+
     // Affiche la plateforme d'inscription
     public void afficherPlateau() {
         panneauSup.afficherChoixAction();
@@ -63,8 +79,14 @@ public class Fenetre extends javax.swing.JFrame{
         panneauInf.afficherScorePerdants();
     }
 
+    // Affiche le visuel permettant de placer des nouveaux choix de compétences
     public void afficherNouveauxChoixCompetences() {
-        // Todo
-        System.out.println("Nouveaux choix Competences");
+        panneauSup.afficherUVRestants();
+        panneauInf.afficherNouveauxChoixCompetences();
+    }
+
+    // Affiche le visuel permettant de déplacer des choix de compétences
+    public void afficherDeplacementsChoixCompetences() {
+        System.out.println("Déplacement choix comp");
     }
 }

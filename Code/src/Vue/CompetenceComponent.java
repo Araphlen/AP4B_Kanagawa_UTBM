@@ -44,9 +44,7 @@ public class CompetenceComponent extends JComponent {
 
         // On affiche des informations de la carte
         secondPinceau.setColor(Color.WHITE);
-        if(carte.getNbComp()>0) {
-            secondPinceau.drawString("Nombre de crédits: "+carte.getNbComp(), (int) (this.getWidth() * 0.1), (int) (this.getHeight() * 0.2));
-        }
+        secondPinceau.drawString("Carte compétence", (int) (this.getWidth() * 0.1), (int) (this.getHeight() * 0.2));
         if (carte.getplusChoix()) {
             secondPinceau.drawString("+1 choix", (int) (this.getWidth() * 0.1), (int) (this.getHeight() * 0.5));
         }

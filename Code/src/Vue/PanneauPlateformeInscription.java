@@ -21,52 +21,50 @@ public class PanneauPlateformeInscription extends javax.swing.JPanel {
         setLayout(new BorderLayout());
         // Affichage du numéro du joueur + numéro du semestre
         JPanel semestreNumJoueur = new JPanel(new GridLayout(2, 1));
-        JLabel semestre = new JLabel("Semestre "+kanagUT.getNumSemestre());
-        JLabel numJoueur = new JLabel("Joueur "+kanagUT.getNumJoueur()+"  ");
+        JLabel semestre = new JLabel("Semestre "+(kanagUT.getNumSemestre()+1));
+        JLabel numJoueur = new JLabel("Joueur "+(kanagUT.getNumJoueur()+1)+"  ");
         semestre.setHorizontalAlignment(JLabel.LEFT);
         numJoueur.setHorizontalAlignment(JLabel.RIGHT);
         semestreNumJoueur.add(semestre);
         semestreNumJoueur.add(numJoueur);
         add(semestreNumJoueur, BorderLayout.NORTH);
 
+        // Affichage des colonnes de cartes
+        JPanel cartesColonnes = new JPanel(new GridLayout(1, 5));
+        ArrayList<ColonneCartesInscription> colonnes = kanagUT.getCarteSurPlateforme();
+        for(int i = 0; i<colonnes.size(); ++i) {
+            ColonneCartesInscription colonne = colonnes.get(i);
+            JPanel pannelColonne = new JPanel(new GridLayout(4, 1));
+            ArrayList<Carte> cartes = colonne.getColonne();
+
+            // Ajout bouton pour sélectionner la colonne
+            JPanel centrerBoutonCol = new JPanel(new GridBagLayout());
+            JButton col = new JButton("Colonne " + (i+1));
+            col.addActionListener(new ColonneCarteListener(fenetre, i));
+            centrerBoutonCol.add(col);
+            pannelColonne.add(centrerBoutonCol);
+
+            // Affichage des cartes de la colonne
+            for(Carte carte: cartes) {
+                JPanel panneauCarte = new JPanel(new GridLayout(1, 2));
+                panneauCarte.add(new CompetenceComponent(carte.getCarteComp()));
+                panneauCarte.add(new UVComponent(carte.getCarteUV()));
+                pannelColonne.add(panneauCarte);
+            }
+            cartesColonnes.add(pannelColonne);
+        }
+
+        for(int i = 0; i<colonnes.size(); ++i) {
+            cartesColonnes.add(new JPanel());
+        }
+
         // Si le joueur peut attendre, on affiche le boutton attendre
-        if(kanagUT.joueurPeutAttendre()) {
+        if (kanagUT.joueurPeutAttendre()) {
             JPanel centrerAttendre = new JPanel(new GridBagLayout());
             JButton attendre = new JButton("Attendre");
             attendre.addActionListener(new AttendreListener(fenetre));
             centrerAttendre.add(attendre);
-            add(centrerAttendre, BorderLayout.EAST);
-        }
-
-        // Affichage des colonnes de cartes
-        JPanel cartesColonnes = new JPanel(new GridLayout(4, 4));
-        ArrayList<ColonneCartesInscription> colonnes = kanagUT.getCarteSurPlateforme();
-        // Boutons pour sélectionner une carte
-        for(int i = 1; i<=colonnes.size(); ++i) {
-            JPanel centrerBoutonCol = new JPanel(new GridBagLayout());
-            JButton col = new JButton("Colonne "+i);
-            col.addActionListener(new ColonneCarteListener(fenetre, i));
-            centrerBoutonCol.add(col);
-            cartesColonnes.add(centrerBoutonCol);
-        }
-        // Comble le gridLayout de JPanel vide s'il y a moins de 4 colonnes
-        for(int i = 0; i<4-colonnes.size(); ++i) {
-            cartesColonnes.add(new JPanel());
-        }
-
-        // Affichage des cartes des colonnes
-        for(int i = 0; i<3; ++i) {
-            for(ColonneCartesInscription colonne : colonnes) {
-                Carte carte  = colonne.getColonne().get(i);
-                JPanel cartePanel = new JPanel(new GridLayout(1, 2));
-                cartePanel.add(new CompetenceComponent(carte.getCarteComp()));
-                cartePanel.add(new UVComponent(carte.getCarteUV()));
-                cartesColonnes.add(cartePanel);
-            }
-            for(int j = 0; j<4-colonnes.size(); ++j) {
-                cartesColonnes.add(new JPanel());
-            }
-
+            cartesColonnes.add(centrerAttendre);
         }
 
         add(cartesColonnes);

@@ -44,4 +44,12 @@ public class PanneauSup extends javax.swing.JPanel{
         repaint();
         revalidate();
     }
+
+    // Affiche les cartes UV dont le joueur doit utiliser les bonnes cartes compétences pour les obtenir
+    public void afficherUVRestants() {
+        removeAll();
+        add(new PanneauUVRestants(fenetre));
+        repaint();
+        revalidate();
+    }
 }

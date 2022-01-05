@@ -44,8 +44,13 @@ public class UVComponent extends JComponent {
         // On affiche des informations de la carte
         secondPinceau.fillRect(0, 0, this.getWidth(), this.getHeight());
         secondPinceau.setColor(Color.WHITE);
-        secondPinceau.drawString("Nombre de crédits: "+carte.getNbCreditDonne(), (int) (this.getWidth() * 0.1), (int) (this.getHeight() * 0.2));
-
+        secondPinceau.drawString("Carte UV", (int) (this.getWidth() * 0.1), (int) (this.getHeight() * 0.2));
+        secondPinceau.drawString("Nombre de crédits: "+carte.getNbCreditDonne(), (int) (this.getWidth() * 0.1), (int) (this.getHeight() * 0.4));
+        secondPinceau.drawString(("Besoin de "+carte.getNbPntCompNecessaire()+" compétences"), (int) (this.getWidth() * 0.1), (int) (this.getHeight() * 0.6));
+        int bonus = carte.getBonusMention();
+        if(bonus>0) {
+            secondPinceau.drawString(("+"+bonus+" points"), (int) (this.getWidth() * 0.1), (int) (this.getHeight() * 0.8));
+        }
         secondPinceau.drawRect(0, 0, this.getWidth(), this.getHeight());
     }
 }

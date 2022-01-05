@@ -20,4 +20,12 @@ public class CarteUV {
     public e_filiere getFiliere() {
         return filiere;
     }
+
+    public int getNbPntCompNecessaire() {
+        return nbPntCompNecessaire;
+    }
+
+    public int getBonusMention() {
+        return bonusMention;
+    }
 }

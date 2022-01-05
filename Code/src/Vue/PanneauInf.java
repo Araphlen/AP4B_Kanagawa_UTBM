@@ -38,4 +38,12 @@ public class PanneauInf extends javax.swing.JPanel{
         repaint();
         revalidate();
     }
+
+    // Affiche le visuel permettant de poser des nouveaux choix de compétences
+    public void afficherNouveauxChoixCompetences() {
+        removeAll();
+        add(new PanneauNouveauxChoixCompetences(fenetre));
+        repaint();
+        revalidate();
+    }
 }
