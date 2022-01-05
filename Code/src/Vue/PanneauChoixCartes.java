@@ -28,7 +28,7 @@ public class PanneauChoixCartes extends javax.swing.JPanel {
         ArrayList<Carte> colonne = fenetre.getKanagUT().getColonneCartesChoisi().getColonne();
         
         // Affichage des cartes + jcheckbox pour les destinations
-        JPanel cartesPanel = new JPanel(new GridLayout(1, colonne.size()));
+        JPanel cartesPanel = new JPanel(new GridLayout(1, colonne.size()+1));
         GridBagConstraints gbc = new GridBagConstraints();
         ArrayList<JCheckBox> checkBoxs = new ArrayList<JCheckBox>();
         for (Carte carte : colonne) {
@@ -67,7 +67,7 @@ public class PanneauChoixCartes extends javax.swing.JPanel {
         valider.addActionListener(new ChoixCartesListener(fenetre, colonne, checkBoxs));
         JPanel centrerValider = new JPanel(new GridBagLayout());
         centrerValider.add(valider);
-        add(centrerValider, BorderLayout.EAST);
+        cartesPanel.add(centrerValider);
         add(cartesPanel);
     }
 }

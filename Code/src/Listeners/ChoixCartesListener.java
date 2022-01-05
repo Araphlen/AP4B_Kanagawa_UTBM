@@ -48,7 +48,12 @@ public class ChoixCartesListener implements ActionListener{
         }
         // Donne les cartes au modèle
         fenetre.getKanagUT().addCartesCompetencesUVsChoisis(comp, uv);
-        // Affiche la vue suivante: le placement de nouveaux choix de compétences
-        fenetre.afficherNouveauxChoixCompetences();
+        // Affiche la vue suivante en fonction du nombre de nouveaux choix du joueur
+        if(fenetre.getKanagUT().getNbNouveauxChoixJoueur()>0) {
+            fenetre.afficherNouveauxChoixCompetences();
+        }else {
+            fenetre.afficherDeplacementsChoixCompetences();
+        }
+        
     }
 }
