@@ -39,7 +39,7 @@ public class PanneauParcours extends javax.swing.JPanel {
         // Le code suivant permet de créer l'aspect visuel des cartes du parcours du joueur
         KanagUT kanagUT = fenetre.getKanagUT();
         ArrayList<CarteUV> uv = kanagUT.getCartesParcours();
-        ArrayList<CarteComp> comp = kanagUT.getCartesCompJoueur();
+        ArrayList<CarteComp> comp = kanagUT.getCartesAcquis();
         // On détermine la taille du tableau dédié au visuels des cartes
         int sizeCartesJoueur = 8, uvSize = uv.size(), compSize = comp.size();
 

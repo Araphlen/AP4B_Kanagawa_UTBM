@@ -81,8 +81,11 @@ public class Joueur {
         nbDeplacementRestants --;
     }
 
+    public void placerChoix(int numCarteComp){
+        acquis.getListCompetences().get(numCarteComp).setSelection(true);
+    }
+
     public void selectCarte(int nbCarteComp){
-        nbChoix--;
         acquis.selectCarte(nbCarteComp);
     }
 
@@ -96,5 +99,16 @@ public class Joueur {
 
     public void setWaiting(boolean waiting) {
         this.waiting = waiting;
+    }
+
+    public int getNbCreditFiliaire(e_filiere filiere) {
+        int tempNb=0;
+        for (CarteComp carteComp :
+                acquis.getListCompetences()) {
+            if (carteComp.isSelected()){
+                tempNb++;
+            }
+        }
+        return tempNb;
     }
 }

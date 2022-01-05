@@ -3,7 +3,7 @@ package Model;
 import java.util.ArrayList;
 
 public class ColonneCartesInscription {
-    public ArrayList<Carte> colonne;
+    private ArrayList<Carte> colonne;
 
     /**
      *
@@ -29,5 +29,13 @@ public class ColonneCartesInscription {
     public void addCarte(Carte carte){
         colonne.add(carte);
     }
-    
+
+    public ArrayList<CarteUV> getCartesUvNonChoisis() {
+        ArrayList<CarteUV> carteUVS = new ArrayList<>();
+        for (Carte carte :
+                this.colonne) {
+            carteUVS.add(carte.getCarteUV());
+        }
+        return carteUVS;
+    }
 }

@@ -29,7 +29,7 @@ public class NouveauChoixListener implements ActionListener{
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        fenetre.getKanagUT().ajoutNouveauChoixSurCarteComp(idCarte);
+        fenetre.getKanagUT().addNouveauChoixSurCarteComp(idCarte);
         if (fenetre.getKanagUT().getNbNouveauxChoixJoueur() > 0) {
             fenetre.afficherNouveauxChoixCompetences();
         } else {

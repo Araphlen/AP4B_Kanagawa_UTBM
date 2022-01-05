@@ -27,7 +27,7 @@ public class PanneauNouveauxChoixCompetences extends javax.swing.JPanel {
         add(nbChoix, BorderLayout.NORTH);
 
         // Affiche des cartes de compétences + un bouton si on peut poser un choix de compétence dessus
-        ArrayList<CarteComp> comp = kanagUT.getCartesCompJoueur();
+        ArrayList<CarteComp> comp = kanagUT.getCartesAcquis();
         JPanel panelCartes = new JPanel(new GridLayout(1, comp.size()+1));
         GridBagConstraints gbc = new GridBagConstraints();
         for(int i = 0; i<comp.size(); ++i) {

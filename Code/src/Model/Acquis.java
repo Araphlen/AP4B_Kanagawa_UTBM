@@ -55,7 +55,6 @@ public class Acquis {
         listCompetences.addAll(carteComps);
     }
 
-    //TODO FIX on peux peut etre n'en faire qu'une et toujours lui donné un ArrayList avec des fois un truc seul dedans
     public void addComp(CarteComp carteComp) {
         listCompetences.add(carteComp);
     }

@@ -10,4 +10,16 @@ public class Specialisation {
         this.filiere = filiere;
         this.mention = mention;
     }
+
+    public int getCreditNecessaire() {
+        return creditNecessaire;
+    }
+
+    public e_filiere getFiliere() {
+        return filiere;
+    }
+
+    public int getMention() {
+        return mention;
+    }
 }

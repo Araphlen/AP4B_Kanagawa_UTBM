@@ -41,13 +41,13 @@ public class ChoixCartesListener implements ActionListener{
         // destinations des cartes
         for(int i = 0; i<checkBoxs.size(); ++i) {
             if(checkBoxs.get(i).isSelected()) {
-                comp.add(cartes.get(i).getCarteComp());
-            }else {
-                uv.add(cartes.get(i).getCarteUV());
+                //todo enlever cette ligne si ça marche  comp.add(cartes.get(i).getCarteComp());
+                fenetre.getKanagUT().addCompToAcquis(cartes.get(i).getCarteComp());
+                fenetre.getKanagUT().retirerCarteFromColonneChoisis(i);
             }
+
         }
-        // Donne les cartes au modèle
-        fenetre.getKanagUT().addCartesCompetencesUVsChoisis(comp, uv);
+
         // Affiche la vue suivante en fonction du nombre de nouveaux choix du joueur
         if(fenetre.getKanagUT().getNbNouveauxChoixJoueur()>0) {
             fenetre.afficherNouveauxChoixCompetences();
