@@ -215,12 +215,15 @@ public class KanagUT {
       }
 
     // Fonction utilisé uniquement pour des tests
-//   public ArrayList<CarteComp> getCartesCompJoueur() {
+//   public ArrayList<CarteComp> getCartesAcquis() {
 //       ArrayList<CarteComp> comps = new ArrayList<CarteComp>();
 //       comps.add(new CarteComp(e_filiere.VIRTUEL, true, true,true));
 //       comps.add(new CarteComp(e_filiere.EMBARQUE, false, false,true));
 //       comps.add(new CarteComp(e_filiere.LOGICIEL, false, true,true));
 //       comps.add(new CarteComp(e_filiere.DATASCIENCE, false, false,true));
+//       comps.get(0).setSelection(true);
+//       comps.get(1).setSelection(true);
+//       comps.get(2).setSelection(true);
 //       return comps;
 //   }
 

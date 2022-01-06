@@ -17,6 +17,7 @@ public class Joueur {
     public Joueur(int numero) {
         this.numero = numero;
         this.nbChoix=2;
+        this.nbDeplacementRestants = 2;
         this.waiting=false;
         this.specialisations=new ArrayList<>();
         this.parcours =new Parcours();

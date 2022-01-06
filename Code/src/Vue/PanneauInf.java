@@ -46,4 +46,14 @@ public class PanneauInf extends javax.swing.JPanel{
         repaint();
         revalidate();
     }
+
+    // Affiche le visuel permettant de déplacer les choix de compétences
+    public void afficherDeplacementChoixCompetences() {
+        removeAll();
+        add(new PanneauDeplacementChoixCompetences(fenetre));
+        repaint();
+        revalidate();
+    }
+
+
 }
