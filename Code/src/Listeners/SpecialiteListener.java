@@ -37,6 +37,7 @@ public class SpecialiteListener implements java.awt.event.ActionListener {
         if(kanagUT.checkFinJeu()) {
             fenetre.affichageScore();
         }else {
+            kanagUT.setFinTourJoueur();
             kanagUT.finTour();
             fenetre.afficherPlateau();
         }

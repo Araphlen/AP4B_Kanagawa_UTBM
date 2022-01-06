@@ -73,7 +73,7 @@ public class KanagUT {
         for (e_filiere filiere :
                 e_filiere.values()) {
             for (int i = 1; i <= 12; i++) {
-                tempcarteCarteComps.add(new CarteComp(filiere,random.nextBoolean(),random.nextBoolean(), random.nextBoolean()));
+                tempcarteCarteComps.add(new CarteComp(filiere,random.nextBoolean(), random.nextBoolean()));
             }
         }
         return tempcarteCarteComps;
@@ -112,10 +112,10 @@ public class KanagUT {
     /**
      *
      */
-    public void ajouterCarteToColonne(){
-        for (int i = 0; i < plateformeInscription.getColonnes().size(); i++) {
-            //récupère une carte dans la pioche et la rajoute dans une colonne
-            plateformeInscription.getColonnes().get(i).addCarte(cartesJeu.get(0));
+    public void addCarteToColonnes(){
+        for (ColonneCartesInscription colonne :
+                plateformeInscription.getColonnes()){
+            colonne.addCarte(cartesJeu.get(0));
             cartesJeu.remove(0);
         }
     }
@@ -387,8 +387,13 @@ public class KanagUT {
      * @return
      */
     public boolean checkFinSemestre(){
-        //TODO
-        return false;
+        for (Joueur joueur :
+                joueurs) {
+            if (!(joueur.isTourFini())) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -414,7 +419,7 @@ public class KanagUT {
             }
         }
         if (getJoueurCourant().isWaiting() && nbJoueursWaiting <2){
-            //TODO vérifier si je dois enlever l'attente du joueur ici
+            getJoueurCourant().setWaiting(false);
             return false;
         }
         return true;
@@ -427,6 +432,14 @@ public class KanagUT {
         getJoueurCourant().setWaiting(true);
     }
 
+    /**
+     *
+     */
+    private void joueurSuivant() {
+        int numNouvJoueur= getJoueurCourant().getNumero()+1;
+        getJoueurCourant().setCurrentPlayer(false);
+        joueurs.get(numNouvJoueur).setCurrentPlayer(true);
+    }
 
 
     public void retirerCarteFromColonneChoisis(int index) {
@@ -439,11 +452,64 @@ public class KanagUT {
 
     // Finit le tour du joueur
     public void finTour() {
-        // Todo
+
+        //tous les joueurs ont fini leur tour
+        if (checkFinSemestre()){
+            finSemestre();
+        }
+        else {
+            if (getJoueurCourant().getNumero() == nbJoueurs-1){
+                //tous les joueurs ont joué une fois on rajoute une carte à toutes les colonnes restantes
+                addCarteToColonnes();
+                getJoueurCourant().setCurrentPlayer(false);
+                if (isThereJoueurEnAttente()){
+                    for (Joueur joueur :
+                            joueurs) {
+                        if (joueur.isWaiting()){
+                            joueur.setCurrentPlayer(true);
+                            break;
+                        }
+                    }
+                }
+            }
+            else{
+                joueurSuivant();
+            }
+        }
+
+
+    }
+
+    private void finSemestre() {
+        for (Joueur joueur :
+                joueurs) {
+            joueur.setCurrentPlayer(false);
+            joueur.setWaiting(false);
+            joueur.setTourFini(false);
+            joueur.resetNbDeplacementRestants();
+        }
+        setUpPlateform();
+        joueurs.get(0).setCurrentPlayer(true);
+
+    }
+
+    private boolean isThereJoueurEnAttente() {
+        for (Joueur joueur :
+                joueurs) {
+            if (joueur.isWaiting()){
+                return true;
+            }
+        }
+        return false;
     }
 
     public void ajouterUvToParcours() {
-        // Todo
+        for (CarteUV carteUV :
+                getCartesUvRestantes()) {
+            if (getJoueurCourant().getNbCreditFiliere(carteUV.getFiliere())>= carteUV.getNbPntCompNecessaire()){
+                getJoueurCourant().addCarteUv(carteUV);
+            }
+        }
     }
 
     /**
@@ -461,5 +527,9 @@ public class KanagUT {
      */
     public ArrayList<Specialisation> getSpecialisationsJoueur() {
         return getJoueurCourant().getSpecialisations();
+    }
+
+    public void setFinTourJoueur() {
+        getJoueurCourant().setTourFini(true);
     }
 }

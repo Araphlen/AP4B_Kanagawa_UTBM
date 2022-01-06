@@ -6,7 +6,8 @@ public class Joueur {
     private final int numero;
     private boolean currentPlayer;
     private boolean waiting;
-    private int nbDeplacements;
+    private boolean tourFini;
+//todo remove    private int nbDeplacements;
     private int nbDeplacementRestants;
     //nombre de choix dont le joueur dispose encore à placer
     private int nbChoix;
@@ -19,6 +20,7 @@ public class Joueur {
         this.nbChoix=2;
         this.nbDeplacementRestants = 2;
         this.waiting=false;
+        this.tourFini=false;
         this.specialisations=new ArrayList<>();
         this.parcours =new Parcours();
         this.acquis=new Acquis();
@@ -38,6 +40,14 @@ public class Joueur {
      */
     public int getNumero() {
         return numero;
+    }
+
+    public boolean isTourFini() {
+        return tourFini;
+    }
+
+    public void setTourFini(boolean tourFini) {
+        this.tourFini = tourFini;
     }
 
     /**
@@ -63,6 +73,14 @@ public class Joueur {
      */
     public void addCartesUvs(ArrayList<CarteUV> carteUVS) {
         parcours.addUvs(carteUVS);
+    }
+
+    /**
+     *
+     * @param carteUV
+     */
+    public void addCarteUv(CarteUV carteUV) {
+        parcours.addUv(carteUV);
     }
 
     /**
@@ -114,12 +132,7 @@ public class Joueur {
         return parcours.getListeUvs();
     }
 
-    /**
-     *
-     */
-    public void commencerDeplacements(){
-        nbDeplacementRestants = nbDeplacements;
-    }
+
 
     /**
      *
@@ -161,6 +174,12 @@ public class Joueur {
      * @param carteComp
      */
     public void addCarteComp(CarteComp carteComp) {
+        if (carteComp.getplusChoix()){
+            this.nbChoix++;
+        }
+        if (carteComp.getPlusDeplacement()){
+            this.nbDeplacementRestants++;
+        }
         acquis.addComp(carteComp);
     }
 
@@ -195,4 +214,21 @@ public class Joueur {
     public ArrayList<Specialisation> getSpecialisations() {
         return specialisations;
     }
+
+    public void resetNbDeplacementRestants() {
+        nbDeplacementRestants = getNbDeplacements();
+    }
+
+    private int getNbDeplacements() {
+        int nbDepl=2 ;
+        for (CarteComp carteComp:
+             acquis.getListCompetences()) {
+            if (carteComp.getPlusDeplacement()){
+                nbDepl++;
+            }
+        }
+        return nbDepl;
+    }
 }
+
+

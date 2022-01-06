@@ -21,6 +21,7 @@ public class AttendreListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         fenetre.getKanagUT().attendre();
+        fenetre.getKanagUT().finTour();
         fenetre.afficherPlateau();
     }
 }

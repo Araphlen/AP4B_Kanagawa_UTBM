@@ -3,20 +3,17 @@ package Model;
 public class CarteComp {
     private e_filiere filiere;
     //private int nbComp;
-    private boolean deplacementDroite;
-    private boolean deplacementGauche;
+//    private boolean deplacementDroite;
+//    private boolean deplacementGauche;
     private boolean selected;
     private boolean plusChoix;
     private boolean plusDeplacement;
 
-    public CarteComp(e_filiere filiere, boolean deplacementDroite, boolean deplacementGauche, boolean plusChoix) {
+    public CarteComp(e_filiere filiere, boolean plusDeplacement, boolean plusChoix) {
         this.filiere = filiere;
-        this.deplacementDroite = deplacementDroite;
-        this.deplacementGauche = deplacementGauche;
+        this.plusDeplacement = plusDeplacement;
         this.selected = false;
         this.plusChoix = plusChoix;
-
-        this.plusDeplacement = true;
     }
 
     /**

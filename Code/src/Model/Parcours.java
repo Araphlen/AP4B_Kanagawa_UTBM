@@ -16,4 +16,8 @@ public class Parcours {
     public void addUvs(ArrayList<CarteUV> carteUVS) {
         listeUvs.addAll(carteUVS);
     }
+
+    public void addUv(CarteUV carteUV) {
+        listeUvs.add(carteUV);
+    }
 }
