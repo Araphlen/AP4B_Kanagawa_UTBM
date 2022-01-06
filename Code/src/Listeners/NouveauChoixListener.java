@@ -10,7 +10,7 @@ public class NouveauChoixListener implements ActionListener{
     private int idCarte;
 
     /**
-     * Contructeur de la carte
+     * Contructeur de la classe
      * @param f
      *  Fenetre de l'application
      * @param idCarte

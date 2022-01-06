@@ -85,8 +85,14 @@ public class Fenetre extends javax.swing.JFrame{
         panneauInf.afficherNouveauxChoixCompetences();
     }
 
-    // Affiche le visuel permettant de déplacer des choix de compétences
+    // Affiche le visuel permettant de déplacer les choix de compétences
     public void afficherDeplacementsChoixCompetences() {
-        System.out.println("Déplacement choix comp");
+        panneauSup.afficherUVRestants();
+        panneauInf.afficherDeplacementChoixCompetences();
+    }
+
+    // Affiche le visuel permettant de sélectionner une spécialiter de diplome
+    public void afficherSpecialites() {
+        System.out.println("Afficher spé");
     }
 }

@@ -54,10 +54,6 @@ public class PanneauPlateformeInscription extends javax.swing.JPanel {
             cartesColonnes.add(pannelColonne);
         }
 
-        for(int i = 0; i<colonnes.size(); ++i) {
-            cartesColonnes.add(new JPanel());
-        }
-
         // Si le joueur peut attendre, on affiche le boutton attendre
         if (kanagUT.joueurPeutAttendre()) {
             JPanel centrerAttendre = new JPanel(new GridBagLayout());
