@@ -2,9 +2,6 @@ package Model;
 
 public class CarteComp {
     private e_filiere filiere;
-    //private int nbComp;
-//    private boolean deplacementDroite;
-//    private boolean deplacementGauche;
     private boolean selected;
     private boolean plusChoix;
     private boolean plusDeplacement;

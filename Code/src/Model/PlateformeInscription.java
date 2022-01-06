@@ -15,7 +15,7 @@ public class PlateformeInscription {
         return colonnes;
     }
 
-    public ColonneCartesInscription getColonneI(int numColonne) {
+    public ColonneCartesInscription takeColonneI(int numColonne) {
         ColonneCartesInscription tempColonne = colonnes.get(numColonne);
         colonnes.remove(numColonne);
         return tempColonne;

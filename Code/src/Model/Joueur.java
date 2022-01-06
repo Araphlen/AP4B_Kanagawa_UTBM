@@ -7,7 +7,6 @@ public class Joueur {
     private boolean currentPlayer;
     private boolean waiting;
     private boolean tourFini;
-//todo remove    private int nbDeplacements;
     private int nbDeplacementRestants;
     //nombre de choix dont le joueur dispose encore à placer
     private int nbChoix;
@@ -153,13 +152,6 @@ public class Joueur {
         acquis.getListCompetences().get(numCarteComp).setSelection(true);
     }
 
-    /**
-     *
-     * @param nbCarteComp
-     */
-    public void selectCarte(int nbCarteComp){
-        acquis.selectCarte(nbCarteComp);
-    }
 
     /**
      *

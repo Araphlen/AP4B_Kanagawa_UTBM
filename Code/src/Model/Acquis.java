@@ -3,21 +3,12 @@ package Model;
 import java.util.ArrayList;
 
 public class Acquis {
-    private ArrayList<Integer> positionsChoix; //todo verifier l'utilité
     private ArrayList<CarteComp> listCompetences;
 
     public Acquis() {
-        this.positionsChoix=new ArrayList<>();
         this.listCompetences=new ArrayList<>();
     }
 
-    /**
-     *
-     * @return liste de la position des choix sur les cartes
-     */
-    public ArrayList<Integer> getPositionsChoix() {
-        return positionsChoix;
-    }
 
     /**
      *
