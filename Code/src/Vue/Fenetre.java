@@ -71,6 +71,7 @@ public class Fenetre extends javax.swing.JFrame{
     // Affiche la sélection de la destination des cartes choisis aucours de la plateforme d'inscription
     public void afficherChoixCartes() {
         panneauSup.afficherChoixCartes();
+        panneauInf.afficherParcours();
     }
 
     // Affichage du score des joueurs en fin de partie
@@ -91,8 +92,9 @@ public class Fenetre extends javax.swing.JFrame{
         panneauInf.afficherDeplacementChoixCompetences();
     }
 
-    // Affiche le visuel permettant de sélectionner une spécialiter de diplome
+    // Affiche le visuel permettant de sélectionner une spécialité de diplome
     public void afficherSpecialites() {
-        System.out.println("Afficher spé");
+        panneauSup.afficherSpecialites();
+        panneauInf.afficherParcours();
     }
 }

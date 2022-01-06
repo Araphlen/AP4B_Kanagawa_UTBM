@@ -21,7 +21,8 @@ public class FinDeplacementChoixListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // Affiche les spécliatés
+        // Affiche les spécliatés*
+        fenetre.getKanagUT().ajouterUvToParcours();
         fenetre.afficherSpecialites();
     }
 }

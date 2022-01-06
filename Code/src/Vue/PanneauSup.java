@@ -52,4 +52,12 @@ public class PanneauSup extends javax.swing.JPanel{
         repaint();
         revalidate();
     }
+
+    // Affiche la vue de sélection d'une spécialité de diplôme
+    public void afficherSpecialites() {
+        removeAll();
+        add(new PanneauSpecialites(fenetre));
+        repaint();
+        revalidate();
+    }
 }

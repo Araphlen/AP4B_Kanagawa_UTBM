@@ -7,6 +7,7 @@ public class CarteComp {
     private boolean deplacementGauche;
     private boolean selected;
     private boolean plusChoix;
+    private boolean plusDeplacement;
 
     public CarteComp(e_filiere filiere, boolean deplacementDroite, boolean deplacementGauche, boolean plusChoix) {
         this.filiere = filiere;
@@ -14,6 +15,8 @@ public class CarteComp {
         this.deplacementGauche = deplacementGauche;
         this.selected = false;
         this.plusChoix = plusChoix;
+
+        this.plusDeplacement = true;
     }
 
     /**
@@ -42,5 +45,9 @@ public class CarteComp {
 
     public boolean getplusChoix() {
         return plusChoix;
+    }
+
+    public boolean getPlusDeplacement() {
+        return plusDeplacement;
     }
 }
