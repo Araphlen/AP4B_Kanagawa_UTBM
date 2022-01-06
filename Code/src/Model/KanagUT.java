@@ -432,4 +432,34 @@ public class KanagUT {
     public void retirerCarteFromColonneChoisis(int index) {
         colonneCartesCoisis.getColonne().remove(index);
     }
+
+    public ArrayList<Specialisation> getSpecialisations() {
+        return specialisations;
+    }
+
+    // Finit le tour du joueur
+    public void finTour() {
+        // Todo
+    }
+
+    public void ajouterUvToParcours() {
+        // Todo
+    }
+
+    /**
+     *
+     * @param filiere
+     * @return nombre de crédits du joueur pour la filière donnée en paramètres
+     */
+    public int getNbCreditFiliere(e_filiere filiere) {
+        return getJoueurCourant().getNbCreditFiliere(filiere);
+    }
+
+    /**
+     * 
+     * @return Specialisations du joueur courant
+     */
+    public ArrayList<Specialisation> getSpecialisationsJoueur() {
+        return getJoueurCourant().getSpecialisations();
+    }
 }

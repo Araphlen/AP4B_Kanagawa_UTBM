@@ -46,7 +46,10 @@ public class CompetenceComponent extends JComponent {
         secondPinceau.setColor(Color.WHITE);
         secondPinceau.drawString("Carte compétence", (int) (this.getWidth() * 0.1), (int) (this.getHeight() * 0.2));
         if (carte.getplusChoix()) {
-            secondPinceau.drawString("+1 choix", (int) (this.getWidth() * 0.1), (int) (this.getHeight() * 0.5));
+            secondPinceau.drawString("+1 choix", (int) (this.getWidth() * 0.1), (int) (this.getHeight() * 0.4));
+        }
+        if (carte.getPlusDeplacement()) {
+            secondPinceau.drawString("+1 déplacement choix", (int) (this.getWidth() * 0.1), (int) (this.getHeight() * 0.6));
         }
         secondPinceau.drawRect(0, 0, this.getWidth(), this.getHeight());
     }

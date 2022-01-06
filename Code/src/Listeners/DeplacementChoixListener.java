@@ -37,6 +37,7 @@ public class DeplacementChoixListener implements ActionListener {
         if (fenetre.getKanagUT().getDeplacementsRestantsChoixJoueur() > 0) {
             fenetre.afficherDeplacementsChoixCompetences();
         } else {
+            fenetre.getKanagUT().ajouterUvToParcours();
             fenetre.afficherSpecialites();
         }
     }

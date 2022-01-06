@@ -18,16 +18,36 @@ public class PanneauParcours extends javax.swing.JPanel {
      */
     public PanneauParcours(Fenetre fenetre) {
         setLayout(new BorderLayout());
+        KanagUT kanagUT = fenetre.getKanagUT();
 
         // Text indiquant des informations sur le joueur
-        String text = "Crédits: ";
-        // Todo
-        text+="\nChoix de compétences: ";
-        //Todo
-        text+="\nNombre de déplacements: ";
-        // Todo
+        String text = "Crédits:";
+        text += "\n - Virtuel: "+kanagUT.getNbCreditFiliere(e_filiere.VIRTUEL);
+        text += "\n - Logiciel: " + kanagUT.getNbCreditFiliere(e_filiere.LOGICIEL);
+        text += "\n - Embarqué: " + kanagUT.getNbCreditFiliere(e_filiere.EMBARQUE);
+        text += "\n - Datascience: " + kanagUT.getNbCreditFiliere(e_filiere.DATASCIENCE);
+        text+="\nNouvuea Choix de compétences: "+kanagUT.getNbNouveauxChoixJoueur();
+        text+="\nNombre de déplacements de choix: "+kanagUT.getDeplacementsRestantsChoixJoueur()+"  ";
         text+="\nDiplômes: ";
-        // Todo
+        for(Specialisation spe: kanagUT.getSpecialisationsJoueur()) {
+            if(spe.getFiliere() == e_filiere.VIRTUEL) {
+                text += "\n - Virtuel: ";
+            }else if (spe.getFiliere() == e_filiere.LOGICIEL) {
+                text += "\n - Logiciel: ";
+            }else if (spe.getFiliere() == e_filiere.EMBARQUE) {
+                text += "\n - Embarqué: ";
+            }else if (spe.getFiliere() == e_filiere.DATASCIENCE) {
+                text += "\n - Datascience: ";
+            }
+
+            if(spe.getMention() == 1) {
+                text += "mention AB  ";
+            }else if (spe.getMention() == 2) {
+                text += "mention B  ";
+            }else if (spe.getMention() == 3) {
+                text += "mention TB  ";
+            }
+        }
 
         // Ajout du text à la fenetre
         JTextArea textArea = new JTextArea(text);
@@ -37,7 +57,6 @@ public class PanneauParcours extends javax.swing.JPanel {
         add(centrerTextArea, BorderLayout.EAST);
 
         // Le code suivant permet de créer l'aspect visuel des cartes du parcours du joueur
-        KanagUT kanagUT = fenetre.getKanagUT();
         ArrayList<CarteUV> uv = kanagUT.getCartesParcours();
         ArrayList<CarteComp> comp = kanagUT.getCartesAcquis();
         // On détermine la taille du tableau dédié au visuels des cartes

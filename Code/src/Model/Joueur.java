@@ -187,4 +187,12 @@ public class Joueur {
         }
         return tempNb;
     }
+
+    /**
+     * 
+     * @return specialisations du joueur
+     */
+    public ArrayList<Specialisation> getSpecialisations() {
+        return specialisations;
+    }
 }
