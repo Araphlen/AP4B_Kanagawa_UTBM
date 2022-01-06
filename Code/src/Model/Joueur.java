@@ -198,9 +198,25 @@ public class Joueur {
      */
     public int getNbCreditFiliere(e_filiere filiere) {
         int tempNb=0;
+        for (CarteUV carteUV :
+                parcours.getListeUvs()) {
+            if (carteUV.getFiliere() == filiere) {
+                tempNb += carteUV.getNbCreditDonne();
+            }
+        }
+        return tempNb;
+    }
+
+    /**
+     *
+     * @param filiere
+     * @return nombre de crédits du joueur pour la filière donnée en paramètres
+     */
+    public int getNbPntCompFiliere(e_filiere filiere) {
+        int tempNb=0;
         for (CarteComp carteComp :
                 acquis.getListCompetences()) {
-            if (carteComp.isSelected()){
+            if (carteComp.isSelected() && carteComp.getFiliere()==filiere){
                 tempNb++;
             }
         }

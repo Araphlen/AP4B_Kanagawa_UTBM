@@ -358,7 +358,7 @@ public class KanagUT {
      */
     public boolean verifierPossibiliteeChoixSpe(int indexSpecialisation){
         e_filiere filiere=specialisations.get(indexSpecialisation).getFiliere();
-        return specialisations.get(indexSpecialisation).getCreditNecessaire() < getJoueurCourant().getNbCreditFiliere(filiere);
+        return specialisations.get(indexSpecialisation).getCreditNecessaire() <= getJoueurCourant().getNbCreditFiliere(filiere) ;
     }
 
     /**
@@ -401,7 +401,7 @@ public class KanagUT {
      * @return
      */
     public boolean checkFinJeu(){
-        //TODO
+
         return false;
     }
 
@@ -506,7 +506,7 @@ public class KanagUT {
     public void ajouterUvToParcours() {
         for (CarteUV carteUV :
                 getCartesUvRestantes()) {
-            if (getJoueurCourant().getNbCreditFiliere(carteUV.getFiliere())>= carteUV.getNbPntCompNecessaire()){
+            if (getJoueurCourant().getNbPntCompFiliere(carteUV.getFiliere())>= carteUV.getNbPntCompNecessaire()){
                 getJoueurCourant().addCarteUv(carteUV);
             }
         }

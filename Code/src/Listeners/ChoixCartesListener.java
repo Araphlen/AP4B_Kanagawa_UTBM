@@ -36,16 +36,22 @@ public class ChoixCartesListener implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        ArrayList<CarteComp> comp = new ArrayList<CarteComp>();
+        ArrayList<Integer> numCompChoisis = new ArrayList<>();
         // TODO a enlever aussi ArrayList<CarteUV> uv = new ArrayList<CarteUV>();
         // destinations des cartes
         for(int i = 0; i<checkBoxs.size(); ++i) {
             if(checkBoxs.get(i).isSelected()) {
                 //todo enlever cette ligne si ça marche  comp.add(cartes.get(i).getCarteComp());
                 fenetre.getKanagUT().addCompToAcquis(cartes.get(i).getCarteComp());
-                fenetre.getKanagUT().retirerCarteFromColonneChoisis(i);
+                numCompChoisis.add(i);
             }
+        }
 
+        int num;
+        for (int i = 0; i < numCompChoisis.size(); i++) {
+            //comme on enlève une carte à chaque fois l’index pris précédemment n’est plus valable donc on le décale du nombre de cartes retirées
+            num = numCompChoisis.get(i) - i;
+            fenetre.getKanagUT().retirerCarteFromColonneChoisis(num);
         }
 
         // Affiche la vue suivante en fonction du nombre de nouveaux choix du joueur
