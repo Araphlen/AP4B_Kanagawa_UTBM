@@ -11,6 +11,7 @@ public class KanagUT {
     private int semestre;
     private ArrayList<Carte> cartesJeu;
     private ArrayList<Specialisation> specialisations;
+    private Joueur gagnant;
 
     /**
      *
@@ -275,8 +276,17 @@ public class KanagUT {
      * @return score du gagnant de la partie
      */
     public ScoreJoueur getGagnant() {
-        // Todo
-        return new ScoreJoueur(2, 500);
+        int maxPoint=0,numGagnant =0;
+        for (Joueur joueur :
+                joueurs) {
+            if (maxPoint < joueur.getPoints()){
+                this.gagnant=joueur;
+                maxPoint=joueur.getPoints();
+                numGagnant = joueur.getNumero();
+            }
+        }
+
+        return new ScoreJoueur(numGagnant, maxPoint);
     }
 
     /**
@@ -285,10 +295,13 @@ public class KanagUT {
      */
     public ArrayList<ScoreJoueur> getPerdants() {
         // Todo
-        ArrayList<ScoreJoueur> perdants = new ArrayList<ScoreJoueur>();
-        perdants.add(new ScoreJoueur(1, 400));
-        perdants.add(new ScoreJoueur(3, 150));
-
+        ArrayList<ScoreJoueur> perdants = new ArrayList<>();
+        for (Joueur joueur :
+                joueurs) {
+            if (joueur != gagnant) {
+                perdants.add(new ScoreJoueur(joueur.getNumero(), joueur.getPoints()));
+            }
+        }
         return perdants;
     }
 
@@ -401,7 +414,19 @@ public class KanagUT {
      * @return
      */
     public boolean checkFinJeu(){
-
+        //on a plus assez de cartes pour relancer un semestre
+        if (cartesJeu.size()<nbJoueurs){
+            return true;
+        }
+        if (specialisations.isEmpty()){
+            return true;
+        }
+        for (Joueur joueur :
+                joueurs) {
+            if (joueur.getCartesUv().size()>10){
+                return true;
+            }
+        }
         return false;
     }
 
@@ -420,6 +445,9 @@ public class KanagUT {
         }
         if (getJoueurCourant().isWaiting() && nbJoueursWaiting <2){
             getJoueurCourant().setWaiting(false);
+            return false;
+        }
+        if (cartesJeu.size()<nbJoueurs){
             return false;
         }
         return true;

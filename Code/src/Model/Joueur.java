@@ -245,6 +245,15 @@ public class Joueur {
         }
         return nbDepl;
     }
+
+    public int getPoints() {
+        int points= 0;
+        for (Specialisation specialisation :
+             specialisations) {
+            points+= specialisation.getMention();
+        }
+        return points;
+    }
 }
 
 
