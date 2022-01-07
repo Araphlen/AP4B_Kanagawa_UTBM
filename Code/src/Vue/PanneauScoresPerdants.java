@@ -21,7 +21,7 @@ public class PanneauScoresPerdants extends javax.swing.JPanel {
         for(ScoreJoueur perdant: perdants) {
             String text = ""+num+"e\nJoueur ";
             ++num;
-            text += "" + perdant.getNumJoueur() + "\nScore: ";
+            text += "" + (perdant.getNumJoueur()+1) + "\nScore: ";
             text += "" + perdant.getScore();
             JTextArea textArea = new JTextArea(text);
             textArea.setBackground(getBackground());

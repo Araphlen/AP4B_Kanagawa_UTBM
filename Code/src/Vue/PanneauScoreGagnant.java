@@ -19,7 +19,7 @@ public class PanneauScoreGagnant extends javax.swing.JPanel {
 
         ScoreJoueur gagnant = fenetre.getKanagUT().getGagnant();
         String text = "1e\nJoueur ";
-        text += ""+gagnant.getNumJoueur()+"\nScore: ";
+        text += ""+(gagnant.getNumJoueur()+1)+"\nScore: ";
         text += ""+gagnant.getScore();
         JTextArea textArea = new JTextArea(text);
         textArea.setBackground(getBackground());
