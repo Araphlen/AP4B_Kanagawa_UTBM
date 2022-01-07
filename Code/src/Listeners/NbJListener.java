@@ -7,9 +7,9 @@ import Vue.Fenetre;
 // Listener permettant d'indiquer le nombre de joueurs de la partie
 public class NbJListener implements java.awt.event.ActionListener {
     // Fenetre de l'application
-    private Fenetre fenetre;
+    private final Fenetre fenetre;
     // Nombre de joueurs sélectionnés
-    private int nbJ;
+    private final int nbJ;
 
     /**
      * Constructeur de la classe

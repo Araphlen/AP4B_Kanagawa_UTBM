@@ -6,15 +6,15 @@ import java.util.Random;
 public class KanagUT {
     private final ArrayList<Joueur> joueurs;
     private int nbJoueurs;
-    private PlateformeInscription plateformeInscription;
+    private final PlateformeInscription plateformeInscription;
     private ColonneCartesInscription colonneCartesCoisis;
-    private int semestre;
-    private ArrayList<Carte> cartesJeu;
-    private ArrayList<Specialisation> specialisations;
+    private final int semestre;
+    private final ArrayList<Carte> cartesJeu;
+    private final ArrayList<Specialisation> specialisations;
     private Joueur gagnant;
 
     /**
-     *
+     *  constructeur de la classe KanagUT
      */
     public KanagUT() {
         this.semestre = 0;
@@ -32,7 +32,7 @@ public class KanagUT {
     }
 
     /**
-     * rempli la plateform d'inscription avec un nombre de colonne correspondant au nombre de joueurs
+     * rempli la plateforme d'inscription avec un nombre de colonnes correspondant au nombre de joueurs
      */
     public void setUpPlateform() {
         ArrayList<ColonneCartesInscription> tempColonnes = new ArrayList<>();
@@ -66,7 +66,7 @@ public class KanagUT {
 
     /**
      *
-     * @return
+     * @return liste de cartes compétences générées aléatoirement
      */
     private ArrayList<CarteComp> generateCartesComp() {
         Random random = new Random();
@@ -82,7 +82,7 @@ public class KanagUT {
 
     /**
      *
-     * @return
+     * @return liste de cartes Uvs générées aléatoirement
      */
     private ArrayList<CarteUV> generateCartesUvs() {
         Random random = new Random();
@@ -97,7 +97,7 @@ public class KanagUT {
     }
 
     /**
-     *
+     *  permet de créer un nombre de joueurs passé en paramètres
      * @param nbJoueurs
      */
     public void createNJoueurs(int nbJoueurs) {
@@ -110,24 +110,21 @@ public class KanagUT {
 
 
 
-    /**
-     *
-     */
-    public void addCarteToColonnes(){
-        for (ColonneCartesInscription colonne :
-                plateformeInscription.getColonnes()){
-            colonne.addCarte(cartesJeu.get(0));
-            cartesJeu.remove(0);
-        }
-    }
-
 
     //#####     Getters         ####//
 
+    /**
+     *
+     * @return le nombre de joueurs
+     */
     public int getNbJoueurs() {
         return nbJoueurs;
     }
 
+    /**
+     *
+     * @return le joueur entrain de jouer
+     */
     public Joueur getJoueurCourant(){
         for (Joueur joueur :
                 this.joueurs) {
@@ -141,7 +138,7 @@ public class KanagUT {
     /**
      *
      * @param cartesChoisis
-     * @return
+     * @return listes des compétences choisies par le joueur courant
      */
     public ArrayList<CarteComp> getCartesCompetencesChoisis(ArrayList<Boolean> cartesChoisis){
         return getJoueurCourant().getCartesCompActives();
@@ -149,7 +146,7 @@ public class KanagUT {
 
     /**
      *
-     * @return
+     * @return le nombre de nouveaux choix du joueur courant
      */
     public int getNbNouveauxChoixJoueur(){
         return getJoueurCourant().getNbChoixDispo();
@@ -157,7 +154,7 @@ public class KanagUT {
 
     /**
      *
-     * @return cartes sur la plateforme d'inscription
+     * @return liste des cartes sur la plateforme d'inscription
      */
       public ArrayList<ColonneCartesInscription> getCarteSurPlateforme(){
           return plateformeInscription.getColonnes();
@@ -174,7 +171,7 @@ public class KanagUT {
 
     /**
      *
-     * @return
+     * @return la colonne de cartes choisies par le joueur courant
      */
      public ColonneCartesInscription getColonneCartesChoisi() {
          return colonneCartesCoisis;
@@ -183,20 +180,23 @@ public class KanagUT {
 
     /**
      *
-     * @return les cartes competences du joueur actuel
+     * @return les cartes competences du joueur courant
      */
       public ArrayList<CarteComp> getCartesAcquis(){
           return getJoueurCourant().getCartesComp();
       }
 
-    
+    /**
+     *
+     * @return liste des cartes Uvs restantes après le choix des compétences
+     */
      public ArrayList<CarteUV> getCartesUvRestantes(){
          return colonneCartesCoisis.getCartesUvNonChoisis();
      }
 
     /**
      *
-     * @return
+     * @return nombre de déplacements restants au joueur courant
      */
     public int getDeplacementsRestantsChoixJoueur() {
         return getJoueurCourant().getNbDeplacementRestants();
@@ -205,12 +205,50 @@ public class KanagUT {
 
     /**
      *
-     * @return
+     * @return liste des cartes Uv du parcours du joueur courant
      */
       public ArrayList<CarteUV> getCartesParcours(){
           return getJoueurCourant().getCartesUv();
       }
 
+    /**
+     *
+     * @param filiere
+     * @return nombre de crédits du joueur courant pour la filière donnée en paramètres
+     */
+    public int getNbCreditFiliere(e_filiere filiere) {
+        return getJoueurCourant().getNbCreditFiliere(filiere);
+    }
+
+    /**
+     *
+     * @return liste des specialisations du joueur courant
+     */
+    public ArrayList<Specialisation> getSpecialisationsJoueur() {
+        return getJoueurCourant().getSpecialisations();
+    }
+
+    /**
+     *
+     * @return liste des spécialisations non sélectionnées restantes dans le jeu
+     */
+    public ArrayList<Specialisation> getSpecialisations() {
+        return specialisations;
+    }
+
+    /**
+     *
+     * @return si au moins un joueur est en attente
+     */
+    private boolean isThereJoueurEnAttente() {
+        for (Joueur joueur :
+                joueurs) {
+            if (joueur.isWaiting()){
+                return true;
+            }
+        }
+        return false;
+    }
 
     /**
      *
@@ -231,7 +269,7 @@ public class KanagUT {
 
     /**
      *
-     * @return score des perdants de la partie
+     * @return liste des scores des perdants de la partie
      */
     public ArrayList<ScoreJoueur> getPerdants() {
         ArrayList<ScoreJoueur> perdants = new ArrayList<>();
@@ -263,18 +301,31 @@ public class KanagUT {
     //####      Setters         ####//
 
     /**
-     *
+     * place un choix sur la carte compétence d'index index
+     * @param index
      */
     public void addNouveauChoixSurCarteComp(int index){
         getJoueurCourant().placerChoix(index);
         }
 
     /**
-     *
+     * ajoute la carte compétence en paramètre aux acquis du joueur courant
      * @param carteComp
      */
     public void addCompToAcquis(CarteComp carteComp){
         getJoueurCourant().addCarteComp(carteComp);
+    }
+
+    /**
+     * permet d'ajouter une carte à chaque colonne restante de la plateformeInscription
+     */
+    public void addCarteToColonnes(){
+        for (ColonneCartesInscription colonne :
+                plateformeInscription.getColonnes()){
+            //pioche une carte
+            colonne.addCarte(cartesJeu.get(0));
+            cartesJeu.remove(0);
+        }
     }
 
     /**
@@ -286,11 +337,12 @@ public class KanagUT {
     }
 
     /**
-     *
+     *  permet de vérifier si le choix de la spécialisation à l'index indexSpecialisation est possible pour le joueur courant
      * @param indexSpecialisation
      */
     public boolean verifierPossibiliteeChoixSpe(int indexSpecialisation){
         e_filiere filiere=specialisations.get(indexSpecialisation).getFiliere();
+        //le nombre de crédits pour la filière désirée doit être supérieur ou égale aux besoins de la spécialisation
         return specialisations.get(indexSpecialisation).getCreditNecessaire() <= getJoueurCourant().getNbCreditFiliere(filiere) ;
     }
 
@@ -307,19 +359,20 @@ public class KanagUT {
     //#### Fonctions        ####//
 
     /**
-     *
-     * @param numOldCarte numéro de la carte où est le choix à déplacer
-     * @param deplacement
+     *  permet de déplacer le choix situé sur la carte de numOldCarte à gauche ou à droite
+     * @param numOldCarte
+     * @param deplacement : >0 pour déplacer à droite et <0 pour déplacer à gauche
      */
     public void deplacementChoixCompetence(int numOldCarte, int deplacement ){
         getJoueurCourant().deplacerChoix(numOldCarte,deplacement);
     }
 
     /**
-     *
+     *  vérifie si le jeu a atteint la fin d'un semestre
      * @return
      */
     public boolean checkFinSemestre(){
+        //vérifie si tous les joueurs ont fini leur tour
         for (Joueur joueur :
                 joueurs) {
             if (!(joueur.isTourFini())) {
@@ -330,7 +383,7 @@ public class KanagUT {
     }
 
     /**
-     *
+     * vérifie si on a atteint une situation de fin de jeu
      * @return
      */
     public boolean checkFinJeu(){
@@ -338,6 +391,7 @@ public class KanagUT {
         if (cartesJeu.size()<nbJoueurs){
             return true;
         }
+        //il n'y a plus de spécialisation à prendre
         if (specialisations.isEmpty()){
             return true;
         }
@@ -363,17 +417,16 @@ public class KanagUT {
                 nbJoueursWaiting++;
             }
         }
+        //si le joueur est en attente et qu'il est le dernier à attendre
         if (getJoueurCourant().isWaiting() && nbJoueursWaiting <2){
             getJoueurCourant().setWaiting(false);
             return false;
         }
+        //il n'y a plus assez de cartes
         if (cartesJeu.size()<nbJoueurs){
             return false;
         }
-        if (plateformeInscription.getColonnes().get(0).getColonne().size()==3){
-            return false;
-        }
-        return true;
+        return plateformeInscription.getColonnes().get(0).getColonne().size() != 3;
     }
 
     /**
@@ -384,7 +437,7 @@ public class KanagUT {
     }
 
     /**
-     *
+     * change de joueur courant
      */
     private void joueurSuivant() {
         int numNouvJoueur= getJoueurCourant().getNumero()+1;
@@ -393,15 +446,19 @@ public class KanagUT {
     }
 
 
+    /**
+     *
+     * @param index
+     */
     public void retirerCarteFromColonneChoisis(int index) {
         colonneCartesCoisis.getColonne().remove(index);
     }
 
-    public ArrayList<Specialisation> getSpecialisations() {
-        return specialisations;
-    }
 
-    // Finit le tour du joueur
+
+    /**
+     * Finit le tour du joueur
+     */
     public void finTour() {
 
         //tous les joueurs ont fini leur tour
@@ -431,6 +488,9 @@ public class KanagUT {
 
     }
 
+    /**
+     * fini le semestre en remettant les variables nécessaires à leurs valeurs par défaut
+     */
     private void finSemestre() {
         for (Joueur joueur :
                 joueurs) {
@@ -444,16 +504,10 @@ public class KanagUT {
 
     }
 
-    private boolean isThereJoueurEnAttente() {
-        for (Joueur joueur :
-                joueurs) {
-            if (joueur.isWaiting()){
-                return true;
-            }
-        }
-        return false;
-    }
 
+    /**
+     * ajoute les cartes Uvs restantes après sélection des choix sur les compétences si le nombre de crédits est suffisant
+     */
     public void ajouterUvToParcours() {
         for (CarteUV carteUV :
                 getCartesUvRestantes()) {
@@ -463,23 +517,10 @@ public class KanagUT {
         }
     }
 
-    /**
-     *
-     * @param filiere
-     * @return nombre de crédits du joueur pour la filière donnée en paramètres
-     */
-    public int getNbCreditFiliere(e_filiere filiere) {
-        return getJoueurCourant().getNbCreditFiliere(filiere);
-    }
 
     /**
-     * 
-     * @return Specialisations du joueur courant
+     * fini le tour du joueur courant
      */
-    public ArrayList<Specialisation> getSpecialisationsJoueur() {
-        return getJoueurCourant().getSpecialisations();
-    }
-
     public void setFinTourJoueur() {
         getJoueurCourant().setTourFini(true);
     }

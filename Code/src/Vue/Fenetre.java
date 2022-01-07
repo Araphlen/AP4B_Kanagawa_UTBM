@@ -8,11 +8,11 @@ import java.awt.*;
 
 public class Fenetre extends javax.swing.JFrame{
     // Panneau du haut de l'application
-    private PanneauSup panneauSup;
+    private final PanneauSup panneauSup;
     // Panneau du bas de l'application
-    private PanneauInf panneauInf;
+    private final PanneauInf panneauInf;
     // Accès au modèle de l'application
-    private KanagUT kanagUT;
+    private final KanagUT kanagUT;
 
     /**
      * Constructeur de la classe

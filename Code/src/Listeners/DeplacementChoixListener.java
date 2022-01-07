@@ -6,9 +6,9 @@ import Vue.Fenetre;
 
 // Listener permettant de déplacer un choix de compétence
 public class DeplacementChoixListener implements ActionListener {
-    private Fenetre fenetre;
-    private int idCarte;
-    private int deplacement;
+    private final Fenetre fenetre;
+    private final int idCarte;
+    private final int deplacement;
 
     /**
      * Contructeur de la classe

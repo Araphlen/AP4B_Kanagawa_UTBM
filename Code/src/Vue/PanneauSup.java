@@ -6,7 +6,7 @@ import java.awt.*;
 // Panneau du haut de la fenetre
 public class PanneauSup extends javax.swing.JPanel{
     // Fenetre principal du jeu 
-    private Fenetre fenetre;
+    private final Fenetre fenetre;
 
     /**
      * Constructeur de la classe

@@ -1,9 +1,9 @@
 package Model;
 
 public class Specialisation {
-    private int creditNecessaire;
-    private e_filiere filiere;
-    private int mention;
+    private final int creditNecessaire;
+    private final e_filiere filiere;
+    private final int mention;
 
     public Specialisation(int creditNecessaire, e_filiere filiere, int mention) {
         this.creditNecessaire = creditNecessaire;
@@ -11,14 +11,26 @@ public class Specialisation {
         this.mention = mention;
     }
 
+    /**
+     *
+     * @return nb creditNecessaire
+     */
     public int getCreditNecessaire() {
         return creditNecessaire;
     }
 
+    /**
+     *
+     * @return filiere
+     */
     public e_filiere getFiliere() {
         return filiere;
     }
 
+    /**
+     *
+     * @return mention
+     */
     public int getMention() {
         return mention;
     }

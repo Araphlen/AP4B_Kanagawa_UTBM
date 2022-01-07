@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 // Panneau du bas de la fenetre
 public class PanneauInf extends javax.swing.JPanel{
     // Fenetre principal du jeu
-    private Fenetre fenetre;
+    private final Fenetre fenetre;
 
     /** 
     * Constructeur de la classe

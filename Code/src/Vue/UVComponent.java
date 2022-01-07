@@ -10,7 +10,7 @@ import java.awt.Graphics;
 // JComponent représentant une carte UV
 public class UVComponent extends JComponent {
     // Carte UV que la classe représente
-    private CarteUV carte;
+    private final CarteUV carte;
 
     /**
      * Constructeur de la classe

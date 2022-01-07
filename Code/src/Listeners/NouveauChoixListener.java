@@ -6,8 +6,8 @@ import Vue.Fenetre;
 
 // Listener permettant de poser un choix de compétence sur une carte
 public class NouveauChoixListener implements ActionListener{
-    private Fenetre fenetre;
-    private int idCarte;
+    private final Fenetre fenetre;
+    private final int idCarte;
 
     /**
      * Contructeur de la classe

@@ -1,10 +1,10 @@
 package Model;
 
 public class CarteComp {
-    private e_filiere filiere;
+    private final e_filiere filiere;
     private boolean selected;
-    private boolean plusChoix;
-    private boolean plusDeplacement;
+    private final boolean plusChoix;
+    private final boolean plusDeplacement;
 
     public CarteComp(e_filiere filiere, boolean plusDeplacement, boolean plusChoix) {
         this.filiere = filiere;
@@ -14,7 +14,7 @@ public class CarteComp {
     }
 
     /**
-     * @return
+     * @return l'état de sélection de la carte
      */
     public boolean isSelected() {
         return selected;
@@ -22,7 +22,7 @@ public class CarteComp {
 
     /**
      *
-     * @return
+     * @return la filière associée à la carte
      */
     public e_filiere getFiliere() {
         return filiere;
@@ -37,10 +37,18 @@ public class CarteComp {
     }
 
 
+    /**
+     *
+     * @return true si la carte offre un choix en plus
+     */
     public boolean getplusChoix() {
         return plusChoix;
     }
 
+    /**
+     *
+     * @return true si la carte offre un déplacement en plus
+     */
     public boolean getPlusDeplacement() {
         return plusDeplacement;
     }

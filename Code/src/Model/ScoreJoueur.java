@@ -3,9 +3,9 @@ package Model;
 // Classe contenant le numéro d'un joueur ainsi que son score
 public class ScoreJoueur {
     // Numéro du joueur
-    private int numJoueur;
+    private final int numJoueur;
     // Score du joueur
-    private int score;
+    private final int score;
 
     /**
      * Constructeur de la classe

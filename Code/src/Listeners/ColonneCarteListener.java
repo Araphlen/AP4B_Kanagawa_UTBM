@@ -7,9 +7,9 @@ import Vue.Fenetre;
 // Listener permettant d'indiquer quelle colonne de cartes a été sélectionnée par le joueur courant à la plateforme d'inscription
 public class ColonneCarteListener implements ActionListener {
     // Fenetre de l'application
-    private Fenetre fenetre;
+    private final Fenetre fenetre;
     // numéro de la colonne de carte sélectionnée
-    private int numColonne;
+    private final int numColonne;
 
     /**
      * Constructeur de la classe

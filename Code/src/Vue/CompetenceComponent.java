@@ -10,7 +10,7 @@ import java.awt.Graphics;
 // JComponent représentant une carte compétence
 public class CompetenceComponent extends JComponent {
     // Carte compétence que la classe représente
-    private CarteComp carte;
+    private final CarteComp carte;
 
     /**
      * Constructeur de la classe

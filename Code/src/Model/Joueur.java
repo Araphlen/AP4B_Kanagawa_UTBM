@@ -10,9 +10,9 @@ public class Joueur {
     private int nbDeplacementRestants;
     //nombre de choix dont le joueur dispose encore à placer
     private int nbChoix;
-    private ArrayList<Specialisation> specialisations;
-    private Parcours parcours;
-    private Acquis acquis;
+    private final ArrayList<Specialisation> specialisations;
+    private final Parcours parcours;
+    private final Acquis acquis;
 
     public Joueur(int numero) {
         this.numero = numero;
@@ -25,9 +25,10 @@ public class Joueur {
         this.acquis=new Acquis();
     }
 
+    //###############   Getters     ######################//
     /**
      *
-     * @return
+     * @return si le joueur est celui entrain de jouer
      */
     public boolean isCurrentPlayer() {
         return currentPlayer;
@@ -35,64 +36,27 @@ public class Joueur {
 
     /**
      *
-     * @return
+     * @return numéro du joueur
      */
     public int getNumero() {
         return numero;
     }
 
+    /**
+     * renvoie si le joueur à terminer son tour
+     * @return true or false
+     */
     public boolean isTourFini() {
         return tourFini;
     }
 
-    public void setTourFini(boolean tourFini) {
-        this.tourFini = tourFini;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public boolean isWaiting() {
-        return waiting;
-    }
-
-
-    /**
-     *
-     * @param carteComps
-     */
-    public void addCartesComp(ArrayList<CarteComp> carteComps) {
-        acquis.addComps(carteComps);
-    }
-
-    /**
-     *
-     * @param carteUVS
-     */
-    public void addCartesUvs(ArrayList<CarteUV> carteUVS) {
-        parcours.addUvs(carteUVS);
-    }
-
-    /**
-     *
-     * @param carteUV
-     */
-    public void addCarteUv(CarteUV carteUV) {
-        parcours.addUv(carteUV);
-    }
-
-    /**
-     *
-     * @return
-     */
     public ArrayList<CarteComp> getCartesComp() {
         return acquis.getListCompetences();
     }
 
     /**
      *
-     * @return
+     * @return nombre de choix disponibles
      */
     public int getNbChoixDispo() {
         return nbChoix - acquis.getNbCartesSelected();
@@ -100,7 +64,7 @@ public class Joueur {
 
     /**
      *
-     * @return
+     * @return nombre de déplacements restants
      */
     public int getNbDeplacementRestants() {
         return nbDeplacementRestants;
@@ -108,79 +72,10 @@ public class Joueur {
 
     /**
      *
-     * @return
+     * @return les cartes compétences sélectionnées par le joueur
      */
     public ArrayList<CarteComp> getCartesCompActives() {
         return acquis.getCarteCompActives();
-    }
-
-
-    /**
-     *
-     * @param specialisation
-     */
-    public void addSpe(Specialisation specialisation) {
-        specialisations.add(specialisation);
-    }
-
-    /**
-     *
-     * @return
-     */
-    public ArrayList<CarteUV> getCartesUv() {
-        return parcours.getListeUvs();
-    }
-
-
-
-    /**
-     *
-     * @param numOldCarte
-     * @param deplacement
-     */
-    public void deplacerChoix(int numOldCarte, int deplacement){
-        this.acquis.getListCompetences().get(numOldCarte).setSelection(false);
-        this.acquis.getListCompetences().get(numOldCarte+deplacement).setSelection(true);
-        nbDeplacementRestants --;
-    }
-
-    /**
-     *
-     * @param numCarteComp
-     */
-    public void placerChoix(int numCarteComp){
-        acquis.getListCompetences().get(numCarteComp).setSelection(true);
-    }
-
-
-    /**
-     *
-     * @param currentPlayer
-     */
-    public void setCurrentPlayer(boolean currentPlayer) {
-        this.currentPlayer = currentPlayer;
-    }
-
-    /**
-     *
-     * @param carteComp
-     */
-    public void addCarteComp(CarteComp carteComp) {
-        if (carteComp.getplusChoix()){
-            this.nbChoix++;
-        }
-        if (carteComp.getPlusDeplacement()){
-            this.nbDeplacementRestants++;
-        }
-        acquis.addComp(carteComp);
-    }
-
-    /**
-     *
-     * @param waiting
-     */
-    public void setWaiting(boolean waiting) {
-        this.waiting = waiting;
     }
 
     /**
@@ -216,21 +111,32 @@ public class Joueur {
     }
 
     /**
-     * 
-     * @return specialisations du joueur
+     *
+     * @return liste des specialisations du joueur
      */
     public ArrayList<Specialisation> getSpecialisations() {
         return specialisations;
     }
 
-    public void resetNbDeplacementRestants() {
-        nbDeplacementRestants = getNbDeplacements();
+    /**
+     *
+     * @return liste des cartes Uvs du joueur
+     */
+    public ArrayList<CarteUV> getCartesUv() {
+        return parcours.getListeUvs();
     }
 
+
+    /**
+     *
+     * @return nombre de déplacements du joueur
+     */
     private int getNbDeplacements() {
+        //nombre de déplacements d'un joueur à l'origine
         int nbDepl=2 ;
         for (CarteComp carteComp:
-             acquis.getListCompetences()) {
+                acquis.getListCompetences()) {
+            //les autres déplacements sont donnés par les cartes compétences du joueur
             if (carteComp.getPlusDeplacement()){
                 nbDepl++;
             }
@@ -238,14 +144,145 @@ public class Joueur {
         return nbDepl;
     }
 
+    /**
+     *
+     * @return nb de points du joueur
+     */
     public int getPoints() {
         int points= 0;
+        //points donnés par le spécialisations
         for (Specialisation specialisation :
-             specialisations) {
+                specialisations) {
             points+= specialisation.getMention();
+        }
+        //points bonus donnés par les cartes Uvs
+        for (CarteUV carteUV :
+                parcours.getListeUvs()) {
+            points += carteUV.getBonusMention();
         }
         return points;
     }
-}
 
+
+
+    /**
+     *
+     * @return si le joueur est en attente
+     */
+    public boolean isWaiting() {
+        return waiting;
+    }
+
+
+
+    public void setTourFini(boolean tourFini) {
+        this.tourFini = tourFini;
+    }
+
+
+    /**
+     *  permet d'ajouter une liste de cartes de compétences aux acquis du joueur
+     * @param carteComps
+     */
+    public void addCartesComp(ArrayList<CarteComp> carteComps) {
+        for (CarteComp carteComp :
+                carteComps) {
+            addCarteComp(carteComp);
+        }
+    }
+
+    /**
+     * permet d'ajouter une carte compétence aux acquis du joueur
+     * @param carteComp
+     */
+    public void addCarteComp(CarteComp carteComp) {
+        if (carteComp.getplusChoix()){
+            this.nbChoix++;
+        }
+        if (carteComp.getPlusDeplacement()){
+            this.nbDeplacementRestants++;
+        }
+        acquis.addComp(carteComp);
+    }
+
+    /**
+     *  permet d'ajouter une liste de cartes d'Uv au parcours du joueur
+     * @param carteUVS
+     */
+    public void addCartesUvs(ArrayList<CarteUV> carteUVS) {
+        parcours.addUvs(carteUVS);
+    }
+
+    /**
+     * permet d'ajouter une carte Uv au parcours du joueur
+     * @param carteUV
+     */
+    public void addCarteUv(CarteUV carteUV) {
+        parcours.addUv(carteUV);
+    }
+
+    /**
+     *
+     * @return liste des cartes compétences du joueur
+     */
+
+
+    /**
+     *  ajoute une spécialisation au joueur
+     * @param specialisation
+     */
+    public void addSpe(Specialisation specialisation) {
+        specialisations.add(specialisation);
+    }
+
+
+
+
+    /**
+     *  permet de deplacer le choix situé sur la carte de numOldCarte à gauche ou à droite
+     * @param numOldCarte
+     * @param deplacement : >0 pour déplacer à droite et <0 pour déplacer à gauche
+     */
+    public void deplacerChoix(int numOldCarte, int deplacement){
+        this.acquis.getListCompetences().get(numOldCarte).setSelection(false);
+        this.acquis.getListCompetences().get(numOldCarte+deplacement).setSelection(true);
+        nbDeplacementRestants --;
+    }
+
+    /**
+     *  place un choix sur une carte
+     * @param numCarteComp
+     */
+    public void placerChoix(int numCarteComp){
+        acquis.getListCompetences().get(numCarteComp).setSelection(true);
+    }
+
+
+    /**
+     * permet de placer un joueur en-temps que joueur courant ou l'inverse
+     * @param currentPlayer
+     */
+    public void setCurrentPlayer(boolean currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
+
+
+    /**
+     *  permet de mettre un joueur en attente
+     * @param waiting
+     */
+    public void setWaiting(boolean waiting) {
+        this.waiting = waiting;
+    }
+
+
+    /**
+     * remet le nombre de déplacements restant au joueur a sa valeur de début de tour
+     */
+    public void resetNbDeplacementRestants() {
+        nbDeplacementRestants = getNbDeplacements();
+    }
+
+
+}
 

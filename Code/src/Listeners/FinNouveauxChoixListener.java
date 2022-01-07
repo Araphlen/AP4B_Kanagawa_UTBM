@@ -7,7 +7,7 @@ import Vue.Fenetre;
 // Listener permettant d'indiquer la fin de placements de nouveaux choix de compétences
 public class FinNouveauxChoixListener implements ActionListener {
     // Fenetre de l'application
-    private Fenetre fenetre;
+    private final Fenetre fenetre;
 
     /**
      * Contructeur de la classe

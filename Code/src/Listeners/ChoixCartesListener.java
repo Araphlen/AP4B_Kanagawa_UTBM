@@ -13,11 +13,11 @@ import Vue.Fenetre;
 // Listener permettant d'indiquer la destinations des cartes de la colonne de cartes sélectionnée au cours de l'inscription du semestre 
 public class ChoixCartesListener implements ActionListener{
     // Fenetre de l'application
-    private ArrayList<JCheckBox> checkBoxs;
+    private final ArrayList<JCheckBox> checkBoxs;
     // Cartes de la colonne de cartes sélectionnés au cours de l'inscription du semestre
-    private ArrayList<Carte> cartes;
+    private final ArrayList<Carte> cartes;
     // Checkboxs indiquant les destinations des cartes
-    private Fenetre fenetre;
+    private final Fenetre fenetre;
 
     /**
      * Constructeur de la classe
@@ -37,11 +37,9 @@ public class ChoixCartesListener implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         ArrayList<Integer> numCompChoisis = new ArrayList<>();
-        // TODO a enlever aussi ArrayList<CarteUV> uv = new ArrayList<CarteUV>();
         // destinations des cartes
         for(int i = 0; i<checkBoxs.size(); ++i) {
             if(checkBoxs.get(i).isSelected()) {
-                //todo enlever cette ligne si ça marche  comp.add(cartes.get(i).getCarteComp());
                 fenetre.getKanagUT().addCompToAcquis(cartes.get(i).getCarteComp());
                 numCompChoisis.add(i);
             }

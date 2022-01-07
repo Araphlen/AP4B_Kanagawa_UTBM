@@ -10,7 +10,7 @@ import java.awt.Graphics;
 // JComponent représentant une carte UV
 public class SpecialiteComponent extends JComponent {
     // Carte UV que la classe représente
-    private Specialisation specialite;
+    private final Specialisation specialite;
 
     /**
      * Constructeur de la classe

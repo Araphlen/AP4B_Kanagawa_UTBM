@@ -3,7 +3,7 @@ package Model;
 import java.util.ArrayList;
 
 public class Acquis {
-    private ArrayList<CarteComp> listCompetences;
+    private final ArrayList<CarteComp> listCompetences;
 
     public Acquis() {
         this.listCompetences=new ArrayList<>();
@@ -34,7 +34,7 @@ public class Acquis {
 
     /**
      *
-     * @return nombre de compétences sélectionnées
+     * @return nombre de compétences sélectionnées par le joueur
      */
     public int getNbCartesSelected(){
         int nbSelected =0;
@@ -63,7 +63,7 @@ public class Acquis {
     }
 
     /**
-     * selection de la compétence à l’index nbCarteComp de la liste des compétences
+     * sélection de la compétence à l’index nbCarteComp de la liste des compétences
      * @param nbCarteComp
      */
     public void selectCarte(int nbCarteComp) {
