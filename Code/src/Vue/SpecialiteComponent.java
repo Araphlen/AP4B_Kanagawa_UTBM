@@ -31,14 +31,17 @@ public class SpecialiteComponent extends JComponent {
     protected void paintComponent(Graphics pinceau) {
         Graphics secondPinceau = pinceau.create();
         // Modifie la couleur du fond de la carte en fonction de sa filière
-        if (specialite.getFiliere() == e_filiere.DATASCIENCE) {
+        e_filiere filiere = specialite.getFiliere();
+        if (filiere == e_filiere.DATASCIENCE) {
             secondPinceau.setColor(new Color(163, 3, 54));
-        } else if (specialite.getFiliere() == e_filiere.LOGICIEL) {
+        } else if (filiere == e_filiere.LOGICIEL) {
             secondPinceau.setColor(new Color(10, 7, 162));
-        } else if (specialite.getFiliere() == e_filiere.EMBARQUE) {
+        } else if (filiere == e_filiere.EMBARQUE) {
             secondPinceau.setColor(new Color(24, 121, 16));
-        } else {
+        } else if (filiere == e_filiere.VIRTUEL) {
             secondPinceau.setColor(new Color(188, 112, 1));
+        } else {
+            secondPinceau.setColor(Color.BLACK);
         }
 
         // On affiche des informations de la spécialité
@@ -53,7 +56,17 @@ public class SpecialiteComponent extends JComponent {
             mention += "TB";
         }
         secondPinceau.drawString(mention, (int) (this.getWidth() * 0.1), (int) (this.getHeight() * 0.2));
-        secondPinceau.drawString("Besoin de "+specialite.getCreditNecessaire()+" crédits", (int) (this.getWidth() * 0.1), (int) (this.getHeight() * 0.4));
+        secondPinceau.drawString("Besoin de "+specialite.getCreditNecessaire()+" crédits", (int) (this.getWidth() * 0.1), (int) (this.getHeight() * 0.35));
         secondPinceau.drawRect(0, 0, this.getWidth(), this.getHeight());
+
+        if (filiere == e_filiere.DATASCIENCE) {
+            secondPinceau.drawString("Datascience", (int) (this.getWidth() * 0.1), (int) (this.getHeight() * 0.8));
+        } else if (filiere == e_filiere.LOGICIEL) {
+            secondPinceau.drawString("Logiciel", (int) (this.getWidth() * 0.1), (int) (this.getHeight() * 0.8));
+        } else if (filiere == e_filiere.EMBARQUE) {
+            secondPinceau.drawString("Embarqué", (int) (this.getWidth() * 0.1), (int) (this.getHeight() * 0.8));
+        } else if (filiere == e_filiere.VIRTUEL) {
+            secondPinceau.drawString("Virtuel", (int) (this.getWidth() * 0.1), (int) (this.getHeight() * 0.8));
+        }
     }
 }
