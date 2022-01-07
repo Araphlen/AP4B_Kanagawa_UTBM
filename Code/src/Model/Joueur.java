@@ -10,9 +10,9 @@ public class Joueur {
     private int nbDeplacementRestants;
     //nombre de choix dont le joueur dispose encore à placer
     private int nbChoix;
-    private final ArrayList<Specialisation> specialisations;
-    private final Parcours parcours;
-    private final Acquis acquis;
+    private ArrayList<Specialisation> specialisations;
+    private Parcours parcours;
+    private Acquis acquis;
 
     public Joueur(int numero) {
         this.numero = numero;

@@ -3,7 +3,7 @@ package Model;
 import java.util.ArrayList;
 
 public class Acquis {
-    private final ArrayList<CarteComp> listCompetences;
+    private ArrayList<CarteComp> listCompetences;
 
     public Acquis() {
         this.listCompetences=new ArrayList<>();

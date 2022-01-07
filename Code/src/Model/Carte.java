@@ -3,8 +3,8 @@ package Model;
 public class Carte {
     private int id;
     private boolean isPlaced;
-    private final CarteComp competence;
-    private final CarteUV uv;
+    private CarteComp competence;
+    private CarteUV uv;
 
     public Carte(CarteComp comp, CarteUV uv) {
         this.competence = comp;

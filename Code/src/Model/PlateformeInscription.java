@@ -3,7 +3,7 @@ package Model;
 import java.util.ArrayList;
 
 public class PlateformeInscription {
-    private final ArrayList<ColonneCartesInscription> colonnes;
+    private ArrayList<ColonneCartesInscription> colonnes;
 
     public PlateformeInscription() {
         this.colonnes=new ArrayList<>();

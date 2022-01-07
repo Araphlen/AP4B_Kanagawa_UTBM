@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class KanagUT {
-    private final ArrayList<Joueur> joueurs;
+    private ArrayList<Joueur> joueurs;
     private int nbJoueurs;
-    private final PlateformeInscription plateformeInscription;
+    private PlateformeInscription plateformeInscription;
     private ColonneCartesInscription colonneCartesCoisis;
-    private final int semestre;
-    private final ArrayList<Carte> cartesJeu;
-    private final ArrayList<Specialisation> specialisations;
+    private int semestre;
+    private ArrayList<Carte> cartesJeu;
+    private ArrayList<Specialisation> specialisations;
     private Joueur gagnant;
 
     /**
@@ -343,7 +343,14 @@ public class KanagUT {
     public boolean verifierPossibiliteeChoixSpe(int indexSpecialisation){
         e_filiere filiere=specialisations.get(indexSpecialisation).getFiliere();
         //le nombre de crédits pour la filière désirée doit être supérieur ou égale aux besoins de la spécialisation
-        return specialisations.get(indexSpecialisation).getCreditNecessaire() <= getJoueurCourant().getNbCreditFiliere(filiere) ;
+        for (Specialisation specialisation :
+                getJoueurCourant().getSpecialisations()) {
+            //on ne peut pas prendre 2 spécialités d'une même filière
+            if (specialisation.getFiliere() == specialisations.get(indexSpecialisation).getFiliere()){
+                return false;
+            }
+        }
+        return specialisations.get(indexSpecialisation).getCreditNecessaire() <= getJoueurCourant().getNbCreditFiliere(filiere)  ;
     }
 
     /**
@@ -501,6 +508,7 @@ public class KanagUT {
         }
         setUpPlateform();
         joueurs.get(0).setCurrentPlayer(true);
+        semestre++;
 
     }
 

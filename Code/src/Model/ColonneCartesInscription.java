@@ -3,7 +3,7 @@ package Model;
 import java.util.ArrayList;
 
 public class ColonneCartesInscription {
-    private final ArrayList<Carte> colonne;
+    private ArrayList<Carte> colonne;
 
 
     public ColonneCartesInscription(Carte carte) {
