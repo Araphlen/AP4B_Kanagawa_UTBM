@@ -26,7 +26,7 @@ public class PanneauParcours extends javax.swing.JPanel {
         text += "\n - Logiciel: " + kanagUT.getNbCreditFiliere(e_filiere.LOGICIEL);
         text += "\n - Embarqué: " + kanagUT.getNbCreditFiliere(e_filiere.EMBARQUE);
         text += "\n - Datascience: " + kanagUT.getNbCreditFiliere(e_filiere.DATASCIENCE);
-        text+="\nNouvuea Choix de compétences: "+kanagUT.getNbNouveauxChoixJoueur();
+        text+="\nNouveau Choix de compétences: "+kanagUT.getNbNouveauxChoixJoueur();
         text+="\nNombre de déplacements de choix: "+kanagUT.getDeplacementsRestantsChoixJoueur()+"  ";
         text+="\nDiplômes: ";
         for(Specialisation spe: kanagUT.getSpecialisationsJoueur()) {
